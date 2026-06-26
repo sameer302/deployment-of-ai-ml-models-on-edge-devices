@@ -21,38 +21,86 @@ Usage examples:
   python yolo_ncnn_infer.py --model yolo11n_ncnn_model --source usb0 --log-latency --csv-path /home/pi/logs/metrics.csv --frame-window-size 20
 """
 
-import os
-import sys
-import argparse
+
+# -------------------------Importing Libraries Code--------------------------------------
+
+import os # done
+import sys # done
+import argparse # done
 import glob
 import time
-import signal
+import signal # done
+import cv2
+import numpy as np
+import yaml # done
+import ncnn # done
+
 # ── METRICS: standard library imports for CSV writing and datetime formatting ──
 import csv
 import datetime
 from collections import deque
 
-import cv2
-import numpy as np
-import yaml
-import ncnn
 
-# ---------------------------------------------------------------------------
-# Graceful shutdown flag — set by SIGTERM (timeout) or SIGINT (Ctrl+C)
-# ---------------------------------------------------------------------------
-_shutdown_requested = False
+ 
+#---------------------------------------------------------------------------------------- 
 
-def _request_shutdown(signum, frame):
-    global _shutdown_requested
+
+
+
+
+
+# ----------------------- Program Runtime Management Code (applicable for any inference script)-----------------------------------------
+# Packages/libraries needed here:
+# 1) signal
+
+
+_shutdown_requested = False #  a global flag is created
+
+def _request_shutdown(signum, _frame): # _frame is a conventional way to name a parameter that is internal or unused. 
+'''
+# This function allows the inference script to clean up files, cameras, CSVs, etc., 
+before exiting instead of stopping abruptly.
+'''
+    global _shutdown_requested 
+'''
+# Here global indicates python that we should use global variable named _shutdown_requested and change it's value. 
+# If we don't use global then inside a function, a variable is always treated like a local variable. 
+# We need to explicitly define global only when we are modifying the value of that variable and not when we are just reading that value. 
+'''
     print(f'\n[INFO] Signal {signum} received. Shutting down gracefully...')
     _shutdown_requested = True
 
-signal.signal(signal.SIGTERM, _request_shutdown)
-signal.signal(signal.SIGINT,  _request_shutdown)
+signal.signal(signal.SIGTERM, _request_shutdown) # kill <pid> --> SIGTERM
+signal.signal(signal.SIGINT,  _request_shutdown) # Ctrl + C in terminal --> SIGINT
 
-# ---------------------------------------------------------------------------
-# Argument parsing
-# ---------------------------------------------------------------------------
+'''
+# signal.signal(X, Y) is the function that tells python, "when signal X arrives, run function Y"
+# Syntax: signal.signal(signal_number, handler_function), signal number and current execution frame are passed as arguments to the handler_function 
+although frame parameter is mostly not used but API requires it. 
+# signal is a message sent by OS to the process.
+
+# Signal    Meaning                 signal_number
+# SIGINT    Interrupt (Ctrl + C)        2
+# SIGTERM   Terminate                   15    
+
+signal.signal(signal.SIGINT, signal.SIG_DFL) # --> OS's default handling.
+signal.signal(signal.SIGTERM, signal.SIG_IGN) # --> Ignoring a signal
+'''
+
+#-----------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+# ------------------------- Argument Parsing Code (applicable for any inference script, the arguments may change)------------------
+# Packages/libraries needed here:
+# 1) argparse
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--model',      required=True,
                     help='Path to NCNN model folder  (contains model.ncnn.param, '
@@ -91,9 +139,23 @@ parser.add_argument('--frame-window-size',          type=int, default=30,
 
 args = parser.parse_args()
 
-# ---------------------------------------------------------------------------
-# Locate model files
-# ---------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+# ------------------------------Locating Model Files Code (typical for ncnn model format but can be changed as per other model format)---------------------------------------------
+# Packages/libraries needed here:
+# 1) os
+# 2) sys
+
+
 model_dir     = args.model
 param_path    = os.path.join(model_dir, 'model.ncnn.param')
 bin_path      = os.path.join(model_dir, 'model.ncnn.bin')
@@ -106,94 +168,225 @@ for fpath, name in [(param_path,    'model.ncnn.param'),
         print(f'ERROR: {name} not found in "{model_dir}"')
         sys.exit(1)
 
-# ---------------------------------------------------------------------------
-# Parse metadata.yaml  →  class labels + input size
-# ---------------------------------------------------------------------------
-with open(metadata_path) as f:
-    meta = yaml.safe_load(f)
+#-----------------------------------------------------------------------------------
 
-names_dict  = meta['names']                           # {0: 'person', 1: 'bicycle', …}
-labels      = [names_dict[i] for i in sorted(names_dict)]
+
+
+
+
+
+
+
+# ----------------------------Parse metadata.yaml Code (typical for ncnn format but can be changed as per other model format)-----------------------------------------------
+# Packages/libraries needed here:
+# 1) yaml
+
+
+with open(metadata_path) as f:
+    meta = yaml.safe_load(f) 
+'''
+    # reads the YAML file and converts it into a python dictionary named meta.
+    # imgsz:
+    # -640
+    # -640
+    # is YAML syntax for list.
+'''
+
+names_dict  = meta['names'] 
+'''
+extracts the value associated with key 'names' which is a dictionary in itself. 
+So names_dict contains values like {0: 'person', 1: 'bicycle', …}
+'''
+labels      = [names_dict[i] for i in sorted(names_dict)] # sorts the keys and creates a list of class names
 num_classes = len(labels)
 
-imgsz   = meta.get('imgsz', [640, 640])
+imgsz   = meta.get('imgsz', [640, 640]) # if 'imgsz' key is missing then use [640, 640] by default
 INPUT_H, INPUT_W = (imgsz, imgsz) if isinstance(imgsz, int) else (imgsz[0], imgsz[1])
 
 print(f'[INFO] {num_classes} classes | input size: {INPUT_W}x{INPUT_H}')
 print(f'[INFO] Loading model from "{model_dir}" ...')
 
-# ---------------------------------------------------------------------------
-# Load NCNN model (single Net instance, reused every frame)
-# ---------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+# -----------------------------Load NCNN model (single Net instance, reused every frame)----------------------------------------------
+# Packages/libraries used 
+# 1) ncnn
+
+
 net = ncnn.Net()
 net.load_param(param_path)
 net.load_model(bin_path)
 print('[INFO] Model loaded.')
 
 # ---------------------------------------------------------------------------
-# Pre-process: letterbox frame  →  ncnn.Mat (3, INPUT_H, INPUT_W) float32
-# Returns the Mat plus the inverse-mapping params needed to convert
-# detected box coords back to the original frame space.
-# ---------------------------------------------------------------------------
-def preprocess(frame: np.ndarray):
+
+
+
+
+
+
+
+#-------------------------------Preprocessing Code----------------------------------------------------
+# Packages/libraries used
+# 1) cv2
+# 2) ncnn
+
+'''
+What all values we need to infer from the training process/code of the model used by us, 
+1) That is must for model to work:-
+a) input height and input width
+
+2) That might affect the performance of the model:-
+a) what padding strategy was used during training (fill with constant color, replicate edge pixels or 
+reflect the image around edges). 
+b) mean_vals and norm_vals for each channel. 
+c) image layout expected (RGB or BGR)
+'''
+
+
+
+def preprocess(frame: np.ndarray): 
+'''
+here the argument is frame and this syntax "frame: np.ndarray" is called type hint. 
+It is not enforced at runtime by default so even if we write preprocess(5), it will be valid.
+Its mainly for documentation and better code readability. 
+We can use it for any data type like, "frame: int" or "frame: float", etc.
+
+This is necessary becaue in future when we will use, "frame = cv2.imread(image.-jpg)"
+here OpenCV image is stored as a NumPy array of type uint8 whose shape is (height, width, channels(BGR)).
+so we can say that openCV internally uses NumPy. 
+'''
     h, w = frame.shape[:2]
     scale  = min(INPUT_W / w, INPUT_H / h)
-    new_w, new_h = int(w * scale), int(h * scale)
+    new_w, new_h = round(w * scale), round(h * scale)
     resized = cv2.resize(frame, (new_w, new_h))
+'''
+This ensures that our image fits inside the dimensions expected by the model while preserving aspect ratio.
+'''
 
     pad_top    = (INPUT_H - new_h) // 2
-    pad_bottom =  INPUT_H - new_h - pad_top
+    pad_bottom =  INPUT_H - new_h - pad_top # This is necessary for the case when (INPUT_H - new_h) is float. 
     pad_left   = (INPUT_W - new_w) // 2
     pad_right  =  INPUT_W - new_w - pad_left
 
     padded = cv2.copyMakeBorder(resized,
                                 pad_top, pad_bottom, pad_left, pad_right,
                                 cv2.BORDER_CONSTANT, value=(114, 114, 114))
+'''
+Here cv2.copyMakeBorder() needs to know how the new border pixels should be filled. 
+The argument cv2.BORDER_CONSTANT means fill the added border with a constant value. The
+constant value is specified by value=(114, 114, 114). Here we gave a tuple as argument 
+instead of a single value because we need to fill the frame with three channel values. 
 
-    # Use ncnn.Mat.from_pixels_resize for safe pixel ingestion
-    # from_pixels expects HWC uint8 BGR, and handles normalisation internally
-    # We normalise manually via from_pixels + mean/norm params
-    rgb = cv2.cvtColor(padded, cv2.COLOR_BGR2RGB)  # HWC uint8 RGB
+Other arguments are cv2.BORDER_REPLICATE or cv2.BORDER_REFLECT. 
+
+What type of argument and for cv2.BORDER_CONSTANT what color to use for filling this depends
+on training code. We should match training preprocessing as the model has learned to see such borders.
+
+(114, 114, 114) gives a gray color. 
+
+This section of preprocessing is called letterboxing.
+'''
+
+    rgb = cv2.cvtColor(padded, cv2.COLOR_BGR2RGB)  
+'''
+OpenCV loads images as B G R but most deep learning models expect R G B hence the 
+above command swaps channels. 
+'''
 
     # from_pixels: HWC uint8 → ncnn.Mat (CHW float), pixel_type=PIXEL_RGB
     mat_in = ncnn.Mat.from_pixels(rgb, ncnn.Mat.PixelType.PIXEL_RGB,
                                   INPUT_W, INPUT_H)
+'''
+The purpose of this function is to convert the numpy ndarray image into an NCNN tensor (ncnn.Mat)
 
+We give our numpy image (rgb) as argument which has shape (height, width, number of 
+channels) and dtype (uint8). Also the layout of our image shape is HWC.
+
+Then we tell that the image is in RGB format by giving the argument ncnn.Mat.PixelType.PIXEL_RGB.
+
+Then we give input image height and width as arguments. 
+
+We need to give all these details because from_pixels() is part of NCNN's C++ API design where
+the function is meant to work with raw pixel buffers and so it can't access metadata like NumPy provides. 
+
+After all these arguments the conversion that happens is, 
+NumPy Array - Shape: (640, 640, 3) - Layout: HWC - Type: uint8
+ncnn.Mat - Shape: (3, 640, 640) - Layout: CHW - Type: float
+
+This is necessary because NCNN inference expects an object of type ncnn.Mat and not numpy.ndarray
+'''
     # Normalise to [0, 1]: x = (x - mean) * norm  →  mean=0, norm=1/255
     mean_vals = [0.0, 0.0, 0.0]
     norm_vals = [1 / 255.0, 1 / 255.0, 1 / 255.0]
     mat_in.substract_mean_normalize(mean_vals, norm_vals)
 
     return mat_in, scale, pad_left, pad_top
+'''
+We return these 4 values because they are used later to convert model outputs back to original coordinates.
+For example, 
+Original Image -> Resize by scale -> Add padding -> Model prediction -> Remove padding -> Divide by scale -> original coordinates
+'''
+
+#-----------------------------------------------------------------------------------------------
 
 
-# ---------------------------------------------------------------------------
-# Post-process: raw YOLO11 output  →  list of (xmin, ymin, xmax, ymax, cls, conf)
-#
-# YOLO11 NCNN out0 shape (verified from model_ncnn.py):
-#   After unsqueeze(0) → (1, 4 + num_classes, num_anchors)
-#   rows 0-3  : cx, cy, w, h  in INPUT_W/H pixel space (not normalised)
-#   rows 4..  : per-class scores  (no separate objectness — YOLO11 style)
-# ---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+# -------------------------Postprocessing Code--------------------------------------------------
+# Packages/libraries used
+# 1) cv2
+
+
 def postprocess(raw: np.ndarray, scale, pad_left, pad_top,
                 orig_w, orig_h, conf_thresh, iou_thresh):
-
-    out = raw[0]                            # (4+nc, num_anchors)
-    box_data     = out[:4, :]               # (4, A)
-    class_scores = out[4:4 + num_classes, :] # (nc, A)
+'''
+This function takes inputs as,
+raw -> direct ouput from NCNN Model
+scale -> scaling factor used during preprocessing
+pad_left, pad_top -> padding added during letterboxing
+orig_w, orig_h -> original image dimensions
+conf_thresh -> confidence threshold
+iou_thresh -> IoU threshold for NMS
+'''
+    out = raw[0]                            # raw.shape = (1, 84, 8400) and out.shape = (84, 8400)
+    box_data     = out[:4, :]               # box_data.shape = (4, 8400) contains row0 -> cx, row1 -> cy, row2 -> w, row3 -> h
+    class_scores = out[4:4 + num_classes, :] # class_scores.shape = (80, 8400) contains person score, bicycle score, ..., toothbrush score
 
     # Vectorised best-class selection
-    class_ids   = class_scores.argmax(axis=0)  # (A,)
-    confidences = class_scores.max(axis=0)     # (A,)
+    class_ids   = class_scores.argmax(axis=0)  # class_ids.shape = (8400,) finds the index/row number of class having max confidence score in each column
+    confidences = class_scores.max(axis=0)     # confidences.shape = (8400,) finds the value of maximum confidence score in each column
 
+'''
+So after this instead of keeping all 80 class scores, we are just keeping highest class score
+'''
     # Early filter — avoids looping over thousands of weak anchors
     mask = confidences >= conf_thresh
-    if not mask.any():
+'''
+if confidences = [0.91, 0.12, 0.83, 0.05, 0.30] and conf_thresh = 0.25 then, 
+mask = [True, False, True, False, True]
+'''
+    if not mask.any(): # executes if there is no True value in mask
         return []
 
-    box_data    = box_data[:, mask]
-    class_ids   = class_ids[mask]
-    confidences = confidences[mask]
+    box_data    = box_data[:, mask] # boolean indexing, this considers all rows and selects only those columns where mask=True
+    class_ids   = class_ids[mask] # same as above
+    confidences = confidences[mask] # same as above
 
     # cx,cy,w,h (padded-input space) → corner coords (original image space)
     cx, cy, bw, bh = box_data
@@ -201,18 +394,31 @@ def postprocess(raw: np.ndarray, scale, pad_left, pad_top,
     cy = (cy - pad_top)  / scale
     bw /= scale
     bh /= scale
+    
+'''
+cx → horizontal center coordinate of the box (distance in pixels from the left boundary of the image to the center of the box.)
+cy → vertical center coordinate of the box (distance in pixels from the top boundary of the image to the center of the box.)
+w  → width of the box
+h  → height of the box
+Above we are just reversing the operations that we did during pre-processing. 
+'''
 
     xmins = np.clip(cx - bw / 2, 0, orig_w - 1).astype(int)
     ymins = np.clip(cy - bh / 2, 0, orig_h - 1).astype(int)
     xmaxs = np.clip(cx + bw / 2, 0, orig_w - 1).astype(int)
     ymaxs = np.clip(cy + bh / 2, 0, orig_h - 1).astype(int)
 
-    # cv2.dnn.NMSBoxes wants [x, y, w, h]
+'''
+# Above we are converting center formats to corners because YOLO predicts: (cx, cy, w, h) but OpenCV drawing functions need: (xmin, ymin, xmax, ymax)
+# Also we are using np.clip to restrict the coordinates between 0 and original width - 1.
+# Further .astype(int) converts the coordinates into integers. 
+'''
+    # cv2.dnn.NMSBoxes wants boxes as [x, y, width, height]
     boxes_xywh = [[int(x), int(y), int(x2 - x), int(y2 - y)]
                   for x, y, x2, y2 in zip(xmins, ymins, xmaxs, ymaxs)]
-    conf_list  = confidences.tolist()
+    conf_list  = confidences.tolist() # openCV prefers normal Python lists
 
-    indices = cv2.dnn.NMSBoxes(boxes_xywh, conf_list, conf_thresh, iou_thresh)
+    indices = cv2.dnn.NMSBoxes(boxes_xywh, conf_list, conf_thresh, iou_thresh) # performs NMS. Also we can remove the conf_thresh here with 0 as we already did it before and this step is redundant. 
     if len(indices) == 0:
         return []
 
@@ -224,6 +430,12 @@ def postprocess(raw: np.ndarray, scale, pad_left, pad_top,
     return results
 
 
+
+
+
+
+
+
 # ---------------------------------------------------------------------------
 # Bounding-box colours — Tableau-10 palette
 # ---------------------------------------------------------------------------
@@ -231,6 +443,23 @@ BBOX_COLORS = [
     (164,120, 87), ( 68,148,228), ( 93, 97,209), (178,182,133), ( 88,159,106),
     ( 96,202,231), (159,124,168), (169,162,241), ( 98,118,150), (172,176,184),
 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # ---------------------------------------------------------------------------
 # Source detection
