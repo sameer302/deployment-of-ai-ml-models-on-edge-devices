@@ -1,5 +1,6 @@
-# Datasets (large, downloaded separately)
-datasets/
+# Datasets (large, downloaded separately) - keep only the README that documents them
+datasets/*
+!datasets/README.md
 
 # Model weights (downloaded/exported separately)
 **/models/*.onnx
