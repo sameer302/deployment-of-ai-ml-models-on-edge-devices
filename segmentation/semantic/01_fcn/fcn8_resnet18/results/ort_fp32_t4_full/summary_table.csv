@@ -1,0 +1,21 @@
+Metric,Value
+Model,FCN8-ResNet18
+Runtime / precision,onnxruntime / FP32
+Input size,1920x1024
+Parameters (M),11.2
+Dataset,Cityscapes val (500 images)
+mIoU (%),69.87
+"Hailo reference mIoU, float (%)",69.4
+Pixel accuracy (%),94.74
+Mean class accuracy (%),79.4
+Inference latency mean ± std (ms),1672.44 ± 68.65
+Inference latency p50 / p95 (ms),1657.91 / 1736.98
+End-to-end latency mean ± std (ms),1809.47 ± 69.41
+FPS end-to-end,0.544
+FPS inference-only,0.598
+CPU utilisation mean (%),94.36
+SoC temperature mean / max (°C),64.12 / 67.75
+CPU frequency min (MHz),2400.0
+Process RSS max (MB),660.3
+Throttling flags seen,0x0
+ONNX Runtime threads,4

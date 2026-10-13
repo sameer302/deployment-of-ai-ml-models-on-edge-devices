@@ -16,6 +16,10 @@
 - Further for each task we have sub-folders to classify the model files on the basis of processor hardware on which they will be executed. For example for object detection I have two sub-folders named cpu and hailo8_npu.
 - Finally for each processor hardware, inside we have the necessary model files which need to be used whhile runing the inference. For the same processor hardware we may have more than one model format. For e.g., we have various model formats to un inference on CPU such as .pt, onnx, ncnn, etc. 
 
+## performance_analysis
+
+- Removed from this repo — performance profiling (platform-level metrics like CPU, memory, thermal, power, and accelerator monitoring) now lives in the separate `performance-analysis` repo. If a deployment pipeline here needs performance profiling, use the profiling script from that repo rather than adding one here.
+
 ## deployment_pipelines
 
 - In this folder first we navigate to the folder representing the processor on which we run the inference for e.g., cpu, npu, etc. Then we navigate to the folder representing the host device on which we are running the inference for e.g., raspberry pi 5.

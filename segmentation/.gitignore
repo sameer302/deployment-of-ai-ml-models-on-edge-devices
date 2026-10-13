@@ -1,0 +1,5 @@
+# Datasets (large, downloaded separately)
+datasets/
+
+# Model weights (downloaded/exported separately)
+**/models/*.onnx

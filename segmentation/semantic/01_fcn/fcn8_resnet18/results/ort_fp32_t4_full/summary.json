@@ -1,0 +1,135 @@
+{
+  "model": "fcn8_resnet_v1_18.onnx",
+  "runtime": "onnxruntime",
+  "precision": "FP32",
+  "input_size": [
+    1024,
+    1920
+  ],
+  "params_M": 11.2,
+  "dataset": "Cityscapes val",
+  "images_evaluated": 500,
+  "accuracy": {
+    "mIoU": 69.87,
+    "pixel_accuracy": 94.74,
+    "mean_class_accuracy": 79.4
+  },
+  "latency_ms": {
+    "load_ms": {
+      "mean": 68.67,
+      "std": 1.33,
+      "p50": 68.68,
+      "p95": 70.72,
+      "min": 63.53,
+      "max": 72.47
+    },
+    "pre_ms": {
+      "mean": 65.59,
+      "std": 1.92,
+      "p50": 65.06,
+      "p95": 68.88,
+      "min": 63.09,
+      "max": 81.18
+    },
+    "infer_ms": {
+      "mean": 1672.44,
+      "std": 68.65,
+      "p50": 1657.91,
+      "p95": 1736.98,
+      "min": 1624.83,
+      "max": 2733.03
+    },
+    "post_ms": {
+      "mean": 2.77,
+      "std": 0.78,
+      "p50": 3.21,
+      "p95": 3.32,
+      "min": 1.9,
+      "max": 7.95
+    },
+    "total_ms": {
+      "mean": 1809.47,
+      "std": 69.41,
+      "p50": 1795.04,
+      "p95": 1875.77,
+      "min": 1759.62,
+      "max": 2885.38
+    }
+  },
+  "throughput": {
+    "fps_end_to_end": 0.544,
+    "fps_inference_only": 0.598,
+    "wall_time_s": 918.4
+  },
+  "platform": {
+    "cpu_total_percent": {
+      "mean": 94.36,
+      "std": 4.82,
+      "p50": 91.5,
+      "p95": 100.0,
+      "min": 87.6,
+      "max": 100.0
+    },
+    "soc_temp_C": {
+      "mean": 64.12,
+      "std": 2.2,
+      "p50": 64.45,
+      "p95": 66.65,
+      "min": 52.35,
+      "max": 67.75
+    },
+    "cpu_freq_MHz": {
+      "mean": 2400.0,
+      "std": 0.0,
+      "p50": 2400.0,
+      "p95": 2400.0,
+      "min": 2400.0,
+      "max": 2400.0
+    },
+    "process_rss_MB": {
+      "mean": 646.94,
+      "std": 19.14,
+      "p50": 655.3,
+      "p95": 659.9,
+      "min": 601.6,
+      "max": 660.3
+    },
+    "memory_used_MB": {
+      "mean": 1515.47,
+      "std": 39.34,
+      "p50": 1510.7,
+      "p95": 1574.16,
+      "min": 1428.0,
+      "max": 1742.7
+    },
+    "throttled_flags_seen": [
+      "0x0"
+    ]
+  },
+  "environment": {
+    "timestamp": "2026-10-10T03:20:34.473991",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "kernel": "6.18.33+rpt-rpi-2712",
+    "python": "3.13.5",
+    "numpy": "2.5.3",
+    "opencv": "5.0.0",
+    "onnxruntime": "1.30.0",
+    "providers": [
+      "CPUExecutionProvider"
+    ],
+    "cpu_count": 4,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "governors": [
+      "performance"
+    ],
+    "intra_op_threads": 4,
+    "start_soc_temp_C": 46.85,
+    "start_throttled": "0x0",
+    "start_memory_used_MB": 1150.9
+  }
+}

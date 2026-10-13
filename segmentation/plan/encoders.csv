@@ -1,0 +1,9 @@
+Order,Encoder (backbone),Family,Key building block,Params (M),Edge suitability,Role in study
+1,VGG-16,Plain CNN,Stacked 3x3 conv + max-pool,14.7 (conv layers),Low (heavy compute),Historical reference (original FCN encoder)
+2,ResNet-18,Residual CNN,Residual (skip) blocks,11.7,Medium,Baseline encoder
+3,ResNet-50,Residual CNN,Bottleneck residual blocks,25.6,Low-Medium,Heavier baseline
+4,MobileNetV2,Mobile CNN,Depthwise separable conv + inverted residuals,3.5,High,Main edge encoder
+5,MobileNetV3,Mobile CNN (NAS),Inverted residuals + SE + h-swish,5.4,High,Edge encoder with attention
+6,EfficientNet-Lite0,Mobile CNN (NAS + scaling),MBConv without SE / swish (NPU-friendly),4.7,High,NPU-friendly EfficientNet
+7,EfficientNet-B0,Mobile CNN (NAS + scaling),MBConv + SE + swish,5.3,Medium (SE/swish costly on NPU),Full EfficientNet
+8,MiT-B0 (SegFormer encoder),Transformer,Efficient self-attention + Mix-FFN,3.7,Low-Medium (attention on NPU),Transformer encoder

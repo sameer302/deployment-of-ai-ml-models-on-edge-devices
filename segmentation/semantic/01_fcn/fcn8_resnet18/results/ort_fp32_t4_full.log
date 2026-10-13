@@ -1,0 +1,24 @@
+Model fcn8_resnet_v1_18.onnx input 1920x1024, 11.20 M params | 500 images | threads 4 | governor ['performance'] | start temp 46.85 C
+  25/500  last infer 1707 ms  elapsed 0.8 min  ETA 15.1 min
+  50/500  last infer 1658 ms  elapsed 1.6 min  ETA 14.0 min
+  75/500  last infer 1631 ms  elapsed 2.3 min  ETA 13.1 min
+  100/500  last infer 2179 ms  elapsed 3.1 min  ETA 12.4 min
+  125/500  last infer 1691 ms  elapsed 3.9 min  ETA 11.6 min
+  150/500  last infer 1656 ms  elapsed 4.7 min  ETA 10.9 min
+  175/500  last infer 1673 ms  elapsed 5.4 min  ETA 10.1 min
+  200/500  last infer 1691 ms  elapsed 6.2 min  ETA 9.3 min
+  225/500  last infer 1653 ms  elapsed 6.9 min  ETA 8.5 min
+  250/500  last infer 1646 ms  elapsed 7.7 min  ETA 7.7 min
+  275/500  last infer 1655 ms  elapsed 8.5 min  ETA 6.9 min
+  300/500  last infer 1655 ms  elapsed 9.2 min  ETA 6.1 min
+  325/500  last infer 1661 ms  elapsed 10.0 min  ETA 5.4 min
+  350/500  last infer 1679 ms  elapsed 10.7 min  ETA 4.6 min
+  375/500  last infer 1663 ms  elapsed 11.5 min  ETA 3.8 min
+  400/500  last infer 1646 ms  elapsed 12.3 min  ETA 3.1 min
+  425/500  last infer 1657 ms  elapsed 13.0 min  ETA 2.3 min
+  450/500  last infer 1644 ms  elapsed 13.8 min  ETA 1.5 min
+  475/500  last infer 1647 ms  elapsed 14.5 min  ETA 0.8 min
+  500/500  last infer 1654 ms  elapsed 15.3 min  ETA 0.0 min
+
+mIoU 69.87% | pixel acc 94.74% | infer 1672.44 ms | e2e FPS 0.544 | max temp 67.75 C
+Results: segmentation/semantic/01_fcn/fcn8_resnet18/results/ort_fp32_t4_full

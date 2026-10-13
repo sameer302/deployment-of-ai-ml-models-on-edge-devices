@@ -1,0 +1,10 @@
+Order,Meta-architecture (decoder),Segmentation type,Key idea,Original reference model,Models to test,Metric,Dataset,Hailo zoo HEF
+1,FCN,Semantic,Classifier made fully convolutional + upsampling,FCN-8s (VGG-16),FCN8-ResNet18; FCN-ResNet50; FCN-MobileNetV2,mIoU,KITTI / Pascal VOC,Yes (fcn8_resnet_v1_18)
+2,U-Net (encoder-decoder),Semantic,Symmetric decoder + skip connections,U-Net (plain conv encoder),U-Net-MobileNetV2; U-Net-ResNet18; U-Net-EfficientNet-Lite0,mIoU,Oxford-IIIT Pet,Yes (unet_mobilenet_v2)
+3,DeepLab,Semantic,Atrous conv + multi-scale context (ASPP),DeepLabV3 (ResNet-101),DeepLabV3-MobileNetV2; DeepLabV3-MobileNetV2 w/o dilation; DeepLabV3-ResNet50,mIoU,Pascal VOC,Yes (deeplab_v3_mobilenet_v2)
+4,Real-time two-branch,Semantic,Separate detail and context paths,BiSeNetV1,STDC1; STDC2; BiSeNetV2,mIoU,KITTI / Cityscapes,Yes (stdc1)
+5,Transformer,Semantic,Self-attention encoder + light MLP decoder,SegFormer,SegFormer-B0; SegFormer-B1; SegFormer-B2,mIoU,KITTI / ADE20K,Yes (segformer_b0_bn)
+6,Two-stage instance,Instance,Detect regions then mask each (RoIAlign),Mask R-CNN (ResNet-50-FPN),Mask R-CNN ResNet-50-FPN; Mask R-CNN MobileNetV3,Mask mAP,COCO val2017,No (compile needed)
+7,Single-stage instance,Instance,Masks from shared prototypes,YOLACT,YOLOv8n-seg; YOLOv8s-seg; YOLOv8m-seg,Mask mAP,COCO val2017,Yes (yolov8n/s/m_seg)
+8,Panoptic / universal,Panoptic,Mask classification with transformer decoder,Mask2Former,Panoptic FPN; Mask2Former (R50),PQ,COCO-Panoptic,No (feasibility study)
+9,Promptable,Promptable,Prompt-driven masks for any object,SAM,FastSAM-s; MobileSAM; SAM-ViT-B,mIoU (prompted),COCO / SA-1B subset,Check (fast_sam_s)
