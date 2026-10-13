@@ -17,6 +17,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 BLUE, ORANGE = "#2a78d6", "#eb6834"
 INK, INK2, MUTED, GRID, AXIS, SURFACE = "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#c3c2b7", "#fcfcfb"
 HAILO_REF_MIOU = 69.4  # Hailo Model Zoo, fcn8_resnet_v1_18 float mIoU on Cityscapes
+MIB = 2 ** 20
 
 plt.rcParams.update({
     "figure.facecolor": SURFACE, "axes.facecolor": SURFACE, "savefig.facecolor": SURFACE,
@@ -98,12 +99,25 @@ def latency_per_image(rows, out):
     plt.close(fig)
 
 
+def to_mib(container, name):
+    """Memory field `name` in MiB. Runs before 2026-10-13 logged MB (10^6 bytes) as `<name>_MB`;
+    newer runs log MiB (2^20 bytes, as `free -m`) as `<name>_MiB`."""
+    if f"{name}_MiB" in container:
+        return container[f"{name}_MiB"]
+    v = container[f"{name}_MB"]
+    if isinstance(v, dict):  # summary.json stats block
+        return {k: round(x * 1e6 / MIB, 2) for k, x in v.items()}
+    return round(float(v) * 1e6 / MIB, 1)
+
+
 def platform_timeline(rows, out):
     t = [float(r["elapsed_s"]) / 60 for r in rows]
+    for r in rows:
+        r["process_rss_MiB"] = to_mib(r, "process_rss")
     panels = [("cpu_total_percent", "CPU utilisation (%)", (0, 105)),
               ("soc_temp_C", "SoC temperature (°C)", None),
               ("cpu_freq_MHz", "CPU frequency (MHz)", (0, 2800)),
-              ("process_rss_MB", "Process memory RSS (MB)", "zero")]
+              ("process_rss_MiB", "Process memory RSS (MiB)", "zero")]
     fig, axes = plt.subplots(len(panels), 1, figsize=(10, 9), sharex=True)
     for ax, (key, label, ylim) in zip(axes, panels):
         vals = [float(r[key]) if r[key] not in ("", "None") else float("nan") for r in rows]
@@ -139,7 +153,8 @@ def summary_table(s, out):
         ("CPU utilisation mean (%)", p["cpu_total_percent"].get("mean")),
         ("SoC temperature mean / max (°C)", f"{p['soc_temp_C'].get('mean')} / {p['soc_temp_C'].get('max')}"),
         ("CPU frequency min (MHz)", p["cpu_freq_MHz"].get("min")),
-        ("Process RSS max (MB)", p["process_rss_MB"].get("max")),
+        ("Process RSS mean / max (MiB)", f"{to_mib(p, 'process_rss')['mean']} / {to_mib(p, 'process_rss')['max']}"),
+        ("System RAM used mean / max (MiB)", f"{to_mib(p, 'memory_used')['mean']} / {to_mib(p, 'memory_used')['max']}"),
         ("Throttling flags seen", " ".join(p["throttled_flags_seen"]) or "none"),
         ("ONNX Runtime threads", s["environment"]["intra_op_threads"]),
     ]

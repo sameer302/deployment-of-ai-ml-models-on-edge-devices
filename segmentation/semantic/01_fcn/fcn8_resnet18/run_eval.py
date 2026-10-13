@@ -2,7 +2,8 @@
 
 Writes to --out-dir:
   per_image.csv      one row per image: ISO timestamp, per-stage latency (load/pre/infer/post), pixel accuracy
-  system.csv         background samples every --interval s: CPU % (total + per core), freq, SoC temp, throttling, RAM, process RSS
+  system.csv         background samples every --interval s: CPU % (total + per core), freq, SoC temp, throttling,
+                     RAM used, page cache (buff/cache), process RSS - memory in MiB (2^20 bytes, as `free -m`)
   per_class_iou.csv  IoU for each of the 19 Cityscapes classes
   summary.json       mIoU, pixel accuracy, latency stats (mean/std/p50/p95), FPS, platform stats, environment
 
@@ -41,6 +42,7 @@ LABEL_TO_TRAIN = {7: 0, 8: 1, 11: 2, 12: 3, 13: 4, 17: 5, 19: 6, 20: 7, 21: 8, 2
 # MMSegmentation ImageNet normalization, RGB order (confirmed by the sanity check: RGB beats BGR).
 MEAN = np.array([123.675, 116.28, 103.53], np.float32)
 STD = np.array([58.395, 57.12, 57.375], np.float32)
+MIB = 2 ** 20  # memory is logged in MiB, the unit `free -m` reports
 
 
 def read_sysfs(path, scale):
@@ -74,6 +76,7 @@ class SystemMonitor(threading.Thread):
         t0 = time.monotonic()
         while not self.stop_event.wait(self.interval):
             per_core = psutil.cpu_percent(percpu=True)
+            vm = psutil.virtual_memory()
             self.rows.append({
                 "timestamp": datetime.now().isoformat(),
                 "elapsed_s": round(time.monotonic() - t0, 3),
@@ -83,9 +86,10 @@ class SystemMonitor(threading.Thread):
                 "cpu_freq_MHz": read_sysfs("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq", 1000),
                 "soc_temp_C": read_sysfs("/sys/class/thermal/thermal_zone0/temp", 1000),
                 "throttled_flags_hex": read_throttled(),
-                "memory_percent": psutil.virtual_memory().percent,
-                "memory_used_MB": round(psutil.virtual_memory().used / 1e6, 1),
-                "process_rss_MB": round(self.proc.memory_info().rss / 1e6, 1),
+                "memory_percent": vm.percent,
+                "memory_used_MiB": round(vm.used / MIB, 1),
+                "memory_buff_cache_MiB": round((vm.buffers + vm.cached) / MIB, 1),
+                "process_rss_MiB": round(self.proc.memory_info().rss / MIB, 1),
             })
 
     def stop(self):
@@ -114,7 +118,9 @@ def environment_info(args, sess):
         "intra_op_threads": args.threads,
         "start_soc_temp_C": read_sysfs("/sys/class/thermal/thermal_zone0/temp", 1000),
         "start_throttled": read_throttled(),
-        "start_memory_used_MB": round(psutil.virtual_memory().used / 1e6, 1),
+        "memory_total_MiB": round(psutil.virtual_memory().total / MIB, 1),
+        "start_memory_used_MiB": round(psutil.virtual_memory().used / MIB, 1),
+        "start_memory_buff_cache_MiB": round((psutil.virtual_memory().buffers + psutil.virtual_memory().cached) / MIB, 1),
     }
 
 
@@ -254,8 +260,9 @@ def main():
             "cpu_total_percent": stats([r["cpu_total_percent"] for r in sysr]),
             "soc_temp_C": stats([r["soc_temp_C"] for r in sysr if r["soc_temp_C"] is not None]),
             "cpu_freq_MHz": stats([r["cpu_freq_MHz"] for r in sysr if r["cpu_freq_MHz"] is not None]),
-            "process_rss_MB": stats([r["process_rss_MB"] for r in sysr]),
-            "memory_used_MB": stats([r["memory_used_MB"] for r in sysr]),
+            "process_rss_MiB": stats([r["process_rss_MiB"] for r in sysr]),
+            "memory_used_MiB": stats([r["memory_used_MiB"] for r in sysr]),
+            "memory_buff_cache_MiB": stats([r["memory_buff_cache_MiB"] for r in sysr]),
             "throttled_flags_seen": sorted({r["throttled_flags_hex"] for r in sysr if r["throttled_flags_hex"]}),
         },
         "environment": env,

@@ -16,6 +16,7 @@ FPS inference-only,0.598
 CPU utilisation mean (%),94.36
 SoC temperature mean / max (°C),64.12 / 67.75
 CPU frequency min (MHz),2400.0
-Process RSS max (MB),660.3
+Process RSS mean / max (MiB),616.97 / 629.71
+System RAM used mean / max (MiB),1445.26 / 1661.97
 Throttling flags seen,0x0
 ONNX Runtime threads,4

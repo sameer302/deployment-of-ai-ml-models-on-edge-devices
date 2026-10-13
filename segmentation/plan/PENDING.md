@@ -30,6 +30,8 @@ Things deferred until first results are in. Tick off as they are done.
 ## Platform profiling framework (Performance-Profiling-for-Edge-Devices)
 - [ ] Integrate the framework (github.com/sameer302/Performance-Profiling-for-Edge-Devices) for proper platform runs: clone as git submodule, per-experiment `experiment_config.json`, `PROTOCOL.md` (§4f), workload CSV with ISO `timestamp`, SIGTERM flush, warm-up, core pinning (monitor core 0, workload cores 1-3), 3 reps with 45-50°C cool-down, run outside Claude Code (§2)
 - [ ] Shared workload-side helper in `segmentation/common/` (per-stage timing, ISO timestamps, buffered CSV, SIGTERM flush)
+- [ ] Toolkit: log memory in MiB (2^20 bytes, as `free -m`) instead of MB (10^6) in `platform_monitor.py` (total RAM/swap print, `process_memory_rss_MB`), to match `run_eval.py` (switched to MiB on 2026-10-13)
+- [ ] Control page-cache state per run (cold: `drop_caches`, or warm: untimed pass) and log `buff/cache`; optional cold-vs-warm load-stage test (100 images)
 - [ ] Toolkit improvements before large sweeps: end workload phase when workload process exits; non-interactive pre-flight (wait-for-temperature or abort); sweep runner (configs x reps with cool-down)
 
 ## Documentation / tooling
