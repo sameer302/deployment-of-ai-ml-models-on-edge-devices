@@ -1,0 +1,4 @@
+repeat,timestamp,load_avg_1m,cpu_percent_1s,soc_temp_C,cpu_freq_MHz,throttled,ram_used_MiB,ram_available_MiB,ram_buff_cache_MiB,process_rss_MiB,process_rss_after_run_max_MiB,process_peak_rss_so_far_MiB,ram_used_end_MiB
+1,2026-10-15T11:50:53.597109,0.17,7.1,45.75,2400/2400/2400/2400,0x0,1297.5,14920.8,6893.7,321.2,751.3,771.9,1611.8
+2,2026-10-15T11:51:36.533217,2.15,0.5,54.55,2400/2400/2400/2400,0x0,1305.7,14912.7,6895.3,424.9,777.7,775.7,1609.0
+3,2026-10-15T11:52:19.234036,3.09,1.5,57.3,2400/2400/2400/2400,0x0,1305.4,14912.9,6896.1,448.4,778.5,776.6,1606.8

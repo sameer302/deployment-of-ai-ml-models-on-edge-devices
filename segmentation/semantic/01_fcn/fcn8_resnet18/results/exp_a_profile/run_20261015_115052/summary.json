@@ -1,0 +1,105 @@
+{
+  "experiment": "A - per-layer profiling",
+  "model": "fcn8_resnet_v1_18.onnx",
+  "runtime": "onnxruntime",
+  "precision": "FP32",
+  "input_size": [
+    1024,
+    1920
+  ],
+  "images": 20,
+  "stride": 25,
+  "repeats": 3,
+  "warmup": 3,
+  "num_layers_profiled": 30,
+  "median_ms": {
+    "wall": 1744.49,
+    "ort_run": 1744.4,
+    "sum_layers": 1743.99
+  },
+  "sum_of_layer_medians_ms": 1719.21,
+  "process_peak_rss_MiB": 776.6,
+  "per_repeat_median_wall_ms": [
+    1741.28,
+    1742.26,
+    1749.86
+  ],
+  "conditions": [
+    {
+      "repeat": 1,
+      "timestamp": "2026-10-15T11:50:53.597109",
+      "load_avg_1m": 0.17,
+      "cpu_percent_1s": 7.1,
+      "soc_temp_C": 45.75,
+      "cpu_freq_MHz": "2400/2400/2400/2400",
+      "throttled": "0x0",
+      "ram_used_MiB": 1297.5,
+      "ram_available_MiB": 14920.8,
+      "ram_buff_cache_MiB": 6893.7,
+      "process_rss_MiB": 321.2,
+      "process_rss_after_run_max_MiB": 751.3,
+      "process_peak_rss_so_far_MiB": 771.9,
+      "ram_used_end_MiB": 1611.8
+    },
+    {
+      "repeat": 2,
+      "timestamp": "2026-10-15T11:51:36.533217",
+      "load_avg_1m": 2.15,
+      "cpu_percent_1s": 0.5,
+      "soc_temp_C": 54.55,
+      "cpu_freq_MHz": "2400/2400/2400/2400",
+      "throttled": "0x0",
+      "ram_used_MiB": 1305.7,
+      "ram_available_MiB": 14912.7,
+      "ram_buff_cache_MiB": 6895.3,
+      "process_rss_MiB": 424.9,
+      "process_rss_after_run_max_MiB": 777.7,
+      "process_peak_rss_so_far_MiB": 775.7,
+      "ram_used_end_MiB": 1609.0
+    },
+    {
+      "repeat": 3,
+      "timestamp": "2026-10-15T11:52:19.234036",
+      "load_avg_1m": 3.09,
+      "cpu_percent_1s": 1.5,
+      "soc_temp_C": 57.3,
+      "cpu_freq_MHz": "2400/2400/2400/2400",
+      "throttled": "0x0",
+      "ram_used_MiB": 1305.4,
+      "ram_available_MiB": 14912.9,
+      "ram_buff_cache_MiB": 6896.1,
+      "process_rss_MiB": 448.4,
+      "process_rss_after_run_max_MiB": 778.5,
+      "process_peak_rss_so_far_MiB": 776.6,
+      "ram_used_end_MiB": 1606.8
+    }
+  ],
+  "environment": {
+    "timestamp": "2026-10-15T11:50:53.594228",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "kernel": "6.18.33+rpt-rpi-2712",
+    "python": "3.13.5",
+    "numpy": "2.5.3",
+    "opencv": "5.0.0",
+    "onnxruntime": "1.30.0",
+    "providers": [
+      "CPUExecutionProvider"
+    ],
+    "cpu_count": 4,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "governors": [
+      "performance"
+    ],
+    "intra_op_threads": 4,
+    "start_soc_temp_C": 46.3,
+    "start_throttled": "0x0",
+    "memory_total_MiB": 16218.4,
+    "start_memory_used_MiB": 1297.5,
+    "start_memory_buff_cache_MiB": 6893.7
+  }
+}

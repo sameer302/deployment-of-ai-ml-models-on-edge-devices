@@ -1,0 +1,101 @@
+{
+  "run_dir": "results/exp_a_profile/run_20261015_115052",
+  "limits": {
+    "peak_GFLOPS": 153.6,
+    "bandwidth_GBps": 8.2,
+    "ridge_FLOP_per_byte": 18.7
+  },
+  "sum_of_layer_medians_ms": 1719.2,
+  "time_gap_ms": {
+    "Ideal: all FLOPs at peak": 931.7,
+    "RAM floor of memory-bound layers": 60.8,
+    "Compute-bound kernels below peak": 635.9,
+    "Memory-bound kernels below RAM limit": 90.8
+  },
+  "time_gap_pct_of_measured": {
+    "Ideal: all FLOPs at peak": 54.2,
+    "RAM floor of memory-bound layers": 3.5,
+    "Compute-bound kernels below peak": 37.0,
+    "Memory-bound kernels below RAM limit": 5.3
+  },
+  "framework_overhead_ms_median": 0.51,
+  "overall_GFLOPS": 83.2,
+  "overall_pct_of_peak": 54.2,
+  "memory_bound_layers": [
+    "MaxPool_3",
+    "Conv_23",
+    "Conv_66",
+    "BatchNormalization_68",
+    "Conv_69",
+    "BatchNormalization_72",
+    "Conv_73",
+    "Resize_81",
+    "ArgMax_82"
+  ],
+  "top_lost_ms": [
+    {
+      "layer": "Conv_0",
+      "group": "stem",
+      "bound": "compute",
+      "time_ms": 157.798,
+      "roofline_min_ms": 60.621,
+      "lost_ms": 97.178
+    },
+    {
+      "layer": "ArgMax_82",
+      "group": "argmax",
+      "bound": "memory",
+      "time_ms": 83.725,
+      "roofline_min_ms": 20.14,
+      "lost_ms": 63.585
+    },
+    {
+      "layer": "Conv_53",
+      "group": "layer4",
+      "bound": "compute",
+      "time_ms": 105.522,
+      "roofline_min_ms": 59.002,
+      "lost_ms": 46.52
+    },
+    {
+      "layer": "Conv_59",
+      "group": "layer4",
+      "bound": "compute",
+      "time_ms": 103.02,
+      "roofline_min_ms": 58.995,
+      "lost_ms": 44.025
+    },
+    {
+      "layer": "Conv_62",
+      "group": "layer4",
+      "bound": "compute",
+      "time_ms": 101.978,
+      "roofline_min_ms": 59.002,
+      "lost_ms": 42.976
+    },
+    {
+      "layer": "Conv_37",
+      "group": "layer3",
+      "bound": "compute",
+      "time_ms": 99.817,
+      "roofline_min_ms": 59.021,
+      "lost_ms": 40.796
+    },
+    {
+      "layer": "Conv_46",
+      "group": "layer3",
+      "bound": "compute",
+      "time_ms": 97.492,
+      "roofline_min_ms": 59.021,
+      "lost_ms": 38.471
+    },
+    {
+      "layer": "Conv_43",
+      "group": "layer3",
+      "bound": "compute",
+      "time_ms": 93.203,
+      "roofline_min_ms": 59.008,
+      "lost_ms": 34.195
+    }
+  ]
+}

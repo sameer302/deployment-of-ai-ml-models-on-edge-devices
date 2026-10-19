@@ -4,3 +4,10 @@ datasets/*
 
 # Model weights (downloaded/exported separately)
 **/models/*.onnx
+
+# Experiment A: optimised graph saved by profile_layers.py in every run folder (~45 MB, regenerated
+# by rerunning the script) - see semantic/01_fcn/fcn8_resnet18/results/exp_a_profile/README.md
+**/optimized_model.onnx
+
+# Compiled STREAM benchmark binary (built from stream.c) - see common/bench/stream/README.md
+common/bench/stream/stream

@@ -1,0 +1,8 @@
+# Python bytecode cache (auto-generated when a script imports another, e.g. profile_layers.py -> run_eval.py)
+__pycache__/
+*.pyc
+
+# Working copies of the Claude slide decks (the decks themselves live on claude.ai) - keep only the
+# README that documents them, see .deck_work/README.md
+.deck_work/*
+!.deck_work/README.md

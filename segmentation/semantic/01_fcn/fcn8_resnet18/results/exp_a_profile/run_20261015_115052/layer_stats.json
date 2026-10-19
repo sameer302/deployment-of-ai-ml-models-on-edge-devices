@@ -1,0 +1,60 @@
+{
+  "run_dir": "results/exp_a_profile/run_20261015_115052",
+  "layers": 30,
+  "total_MACs_G": 71.248,
+  "total_FLOPs_G": 143.114,
+  "check_layer_table_MACs_G": 71.248,
+  "weights_MiB": 42.73,
+  "activation_peak": {
+    "layer": "ArgMax_82",
+    "op_type": "ArgMax",
+    "group": "argmax",
+    "live_act_MiB": 157.5,
+    "tensors": [
+      {
+        "tensor": "226",
+        "shape": "1x19x1024x1920",
+        "MiB": 142.5,
+        "written_by": "Resize_81",
+        "last_read_by": "ArgMax_82"
+      },
+      {
+        "tensor": "output",
+        "shape": "1x1x1024x1920",
+        "MiB": 15.0,
+        "written_by": "ArgMax_82",
+        "last_read_by": "ArgMax_82"
+      }
+    ]
+  },
+  "peak_estimate_MiB": {
+    "activations": 157.5,
+    "weights": 42.73,
+    "total": 200.23
+  },
+  "largest_activation": {
+    "tensor": "226",
+    "MiB": 142.5
+  },
+  "fused": {
+    "Conv_0": "Conv_0+Relu_2",
+    "Conv_4": "Conv_4+Relu_6",
+    "Conv_7": "Conv_7+Add_9+Relu_10",
+    "Conv_11": "Conv_11+Relu_13",
+    "Conv_14": "Conv_14+Add_16+Relu_17",
+    "Conv_18": "Conv_18+Relu_20",
+    "Conv_21": "Conv_21+Add_25+Relu_26",
+    "Conv_27": "Conv_27+Relu_29",
+    "Conv_30": "Conv_30+Add_32+Relu_33",
+    "Conv_34": "Conv_34+Relu_36",
+    "Conv_37": "Conv_37+Add_41+Relu_42",
+    "Conv_43": "Conv_43+Relu_45",
+    "Conv_46": "Conv_46+Add_48+Relu_49",
+    "Conv_50": "Conv_50+Relu_52",
+    "Conv_53": "Conv_53+Add_57+Relu_58",
+    "Conv_59": "Conv_59+Relu_61",
+    "Conv_62": "Conv_62+Add_64+Relu_65",
+    "Conv_69": "Conv_69+Add_70",
+    "Conv_73": "Conv_73+Add_74"
+  }
+}
