@@ -120,7 +120,7 @@ def draw_main(stats, total_params, total_macs, out_base):
     for x, lab in zip(xs, ["full res (1/1)", "1/4", "1/4", "1/8", "1/16", "1/32"]):
         ax.text(x, 7.05, lab, ha="center", fontsize=9, color=MUTED)
     ax.text(-1.2, 7.75, "ENCODER  (ResNet-18, BatchNorm folded into conv weights)", fontsize=10, color=ENC, fontweight="bold")
-    ax.text(-1.2, -1.2, "DECODER  (FCN-8s head, 19 Cityscapes classes)", fontsize=10, color=DEC, fontweight="bold")
+    ax.text(-1.2, -1.2, "DECODER  (FCN-8s head, then Resize + ArgMax; 19 Cityscapes classes)", fontsize=10, color=DEC, fontweight="bold")
 
     s = stats
     t = total_macs
@@ -150,6 +150,13 @@ def draw_main(stats, total_params, total_macs, out_base):
                                                      s["resize_x8"]["out"], "19 class scores / pixel"])
     box(ax, xs[1], bot, w, h * 0.92, POST, "ArgMax", ["over the 19 classes", "(inside the ONNX model)", s["argmax"]["out"]])
     box(ax, xs[0], bot, w, h * 0.92, MUTED, "Output", ["class map, int64", "1×1024×1920", "→ resized to 2048×1024", "for evaluation"], fill=IO_FILL)
+
+    # FCN-8s head = the 3 score convs + the 2 upsample-and-add steps (fusion map: FCN-8s head, IDs 21-27)
+    hx0, hx1, hy0, hy1 = xs[3] - w / 2 - 0.12, xs[5] + w / 2 + 0.12, bot - h * 0.46 - 0.12, mid + hs / 2 + 0.12
+    ax.add_patch(FancyBboxPatch((hx0, hy0), hx1 - hx0, hy1 - hy0, boxstyle="round,pad=0,rounding_size=0.12",
+                                fill=False, ec=INK2, lw=1.4, ls=(0, (5, 3))))
+    ax.text(xs[5] + 0.35, bot - 0.15, "FCN-8s head", ha="center", va="center", fontsize=11, fontweight="bold", color=INK)
+    ax.text(xs[5] + 0.35, bot - 0.5, "3 score convs +\n2 upsample-and-add", ha="center", va="center", fontsize=9, color=INK2)
 
     arrow(ax, (xs[5], mid - hs / 2), (xs[4] + w / 2, bot + 0.25), color=DEC, rad=-0.25)
     arrow(ax, (xs[4], mid - hs / 2), (xs[4], bot + h * 0.46), color=SKIP)

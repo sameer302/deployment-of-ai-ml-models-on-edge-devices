@@ -40,7 +40,7 @@ BLUE, ORANGE = "#2A78D6", "#EB6834"            # same pair as plot_results.py
 INK, MUTED, GRID = "#1B2333", "#5E6574", "#E2DFD6"
 GROUP_ORDER = ["stem", "layer1", "layer2", "layer3", "layer4", "fcn_head", "resize", "argmax"]
 GROUP_LABEL = {"stem": "Stem", "layer1": "layer1", "layer2": "layer2", "layer3": "layer3", "layer4": "layer4",
-               "fcn_head": "FCN head", "resize": "Resize", "argmax": "ArgMax"}
+               "fcn_head": "FCN-8s head", "resize": "Resize", "argmax": "ArgMax"}
 
 
 def read_csv(path):

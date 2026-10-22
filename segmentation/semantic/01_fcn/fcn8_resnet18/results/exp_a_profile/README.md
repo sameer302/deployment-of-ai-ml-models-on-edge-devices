@@ -11,6 +11,13 @@ Produced by `../../profile_layers.py`. One folder per run: `run_<YYYYMMDD_HHMMSS
 | `conditions.csv` | Per repeat: load, CPU %, temperature, clock, throttling, RAM used / available / buff-cache, process RSS | Yes |
 | `summary.json` | Totals, conditions, environment | Yes |
 | `ort_trace_rep<r>_*.json` | Raw ONNX Runtime profiler traces | Yes |
+| `layer_stats.csv`, `block_stats.csv`, `layer_stats.json` | Per fused layer / block: FLOPs, weight and activation sizes, live memory (`../../layer_stats.py`) | Yes |
+| `analysis_layers.csv`, `analysis_blocks.csv`, `analysis.json` | Roofline and time breakdown (`../../analyze_profile.py`) | Yes |
+| `plots/roofline.png`, `plots/time_vs_compute.png`, `plots/time_gap.png` | Charts from `../../analyze_profile.py` | Yes |
+| `plots/fusion_map.png` | The 57 ONNX layers grouped into the 30 fused layers, one column per block (`../../plot_fusion_map.py`) | Yes |
+| `plots/layer_latency.png` | Median time per fused layer, coloured by roofline bound, with the best possible time (`../../plot_layer_latency.py`) | Yes |
+| `plots/layer_latency_plain.png` | Median time per fused layer only, one colour (`../../plot_layer_latency.py --plain`) | Yes |
+| `plots/layer_memory.png` | Weight and activation memory per fused layer, counterpart of FlexNN Fig. 1 (`../../plot_layer_memory.py`) | Yes |
 | `optimized_model.onnx` | The optimised graph ONNX Runtime actually runs (fused and renamed layers). Profiler layer names match this file, not the original model | **No** (~45 MB) |
 
 ## Not in git: `optimized_model.onnx`
