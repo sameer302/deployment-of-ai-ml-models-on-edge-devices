@@ -1,0 +1,5 @@
+leftImg8bit/val/frankfurt/frankfurt_000000_000294_leftImg8bit.png
+leftImg8bit/val/frankfurt/frankfurt_000000_011461_leftImg8bit.png
+leftImg8bit/val/frankfurt/frankfurt_000001_000538_leftImg8bit.png
+leftImg8bit/val/frankfurt/frankfurt_000001_010444_leftImg8bit.png
+leftImg8bit/val/frankfurt/frankfurt_000001_017459_leftImg8bit.png

@@ -1,0 +1,5 @@
+setting,repeat,start_temp_C,load_avg_1m,waited_s,process_s,end_temp_C
+arena1_pattern1,1,44.65,0.22,0.0,8.5,51.25
+arena1_pattern0,1,51.8,0.95,0.0,8.5,52.9
+arena0_pattern1,1,52.9,1.42,0.0,8.5,55.1
+arena0_pattern0,1,49.6,1.65,5.0,8.5,55.1

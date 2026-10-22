@@ -1,0 +1,37 @@
+4 settings x 2 passes (mem/lat) x 3 repeats, 10 runs each, 5 images, threads 4, mem pass samples RSS every 2.0 ms -> /home/sameer/Desktop/Edge_AI/Deployment-of-AI-ML-Models-on-Edge-Devices/segmentation/semantic/01_fcn/fcn8_resnet18/results/ort_mem_settings/run_20261021_151457
+rep 1 arena1_pattern1  mem  start 47.4 C  run1 1978 ms  steady 1852 ms  peak 602 MiB  after last run 602 MiB
+rep 1 arena1_pattern1  lat  start 54.0 C  run1 1750 ms  steady 1698 ms  peak 601 MiB  after last run 601 MiB
+rep 1 arena1_pattern0  mem  start 50.15 C  run1 1848 ms  steady 1812 ms  peak 654 MiB  after last run 654 MiB
+rep 1 arena1_pattern0  lat  start 53.45 C  run1 1684 ms  steady 1659 ms  peak 653 MiB  after last run 653 MiB
+rep 1 arena0_pattern1  mem  start 51.8 C  run1 1845 ms  steady 1827 ms  peak 397 MiB  after last run 249 MiB
+rep 1 arena0_pattern1  lat  start 52.35 C  run1 1702 ms  steady 1685 ms  peak 396 MiB  after last run 248 MiB
+rep 1 arena0_pattern0  mem  start 53.45 C  run1 1885 ms  steady 1882 ms  peak 420 MiB  after last run 279 MiB
+rep 1 arena0_pattern0  lat  start 52.9 C  run1 1758 ms  steady 1707 ms  peak 418 MiB  after last run 278 MiB
+rep 2 arena1_pattern1  mem  start 53.45 C  run1 1857 ms  steady 1810 ms  peak 602 MiB  after last run 602 MiB
+rep 2 arena1_pattern1  lat  start 53.45 C  run1 1677 ms  steady 1677 ms  peak 601 MiB  after last run 601 MiB
+rep 2 arena1_pattern0  mem  start 53.45 C  run1 1838 ms  steady 1797 ms  peak 655 MiB  after last run 655 MiB
+rep 2 arena1_pattern0  lat  start 53.45 C  run1 1734 ms  steady 1706 ms  peak 653 MiB  after last run 653 MiB
+rep 2 arena0_pattern1  mem  start 54.55 C  run1 1836 ms  steady 1845 ms  peak 397 MiB  after last run 249 MiB
+rep 2 arena0_pattern1  lat  start 52.35 C  run1 1711 ms  steady 1705 ms  peak 396 MiB  after last run 248 MiB
+rep 2 arena0_pattern0  mem  start 52.35 C  run1 1870 ms  steady 1872 ms  peak 420 MiB  after last run 279 MiB
+rep 2 arena0_pattern0  lat  start 54.0 C  run1 1687 ms  steady 1723 ms  peak 419 MiB  after last run 278 MiB
+rep 3 arena1_pattern1  mem  start 52.35 C  run1 1853 ms  steady 1814 ms  peak 602 MiB  after last run 602 MiB
+rep 3 arena1_pattern1  lat  start 54.0 C  run1 1704 ms  steady 1687 ms  peak 601 MiB  after last run 601 MiB
+rep 3 arena1_pattern0  mem  start 54.0 C  run1 1869 ms  steady 1817 ms  peak 655 MiB  after last run 655 MiB
+rep 3 arena1_pattern0  lat  start 54.0 C  run1 1715 ms  steady 1674 ms  peak 653 MiB  after last run 653 MiB
+rep 3 arena0_pattern1  mem  start 54.0 C  run1 1839 ms  steady 1828 ms  peak 397 MiB  after last run 249 MiB
+rep 3 arena0_pattern1  lat  start 53.45 C  run1 1717 ms  steady 1697 ms  peak 396 MiB  after last run 248 MiB
+rep 3 arena0_pattern0  mem  start 53.45 C  run1 1846 ms  steady 1841 ms  peak 420 MiB  after last run 213 MiB
+rep 3 arena0_pattern0  lat  start 54.55 C  run1 1697 ms  steady 1713 ms  peak 419 MiB  after last run 278 MiB
+
+median over repeats (steady = runs 3..N):
+setting          pass   run1 ms steady ms peak run1 peak steady  between
+arena1_pattern1  mem    1856.58   1818.13    546.11      601.67   601.21
+arena1_pattern1  lat    1704.27   1689.26    545.92      600.69   600.29
+arena1_pattern0  mem     1847.6   1814.27    546.09      653.94   653.66
+arena1_pattern0  lat    1715.01    1679.9    545.92      653.38   652.79
+arena0_pattern1  mem     1839.4   1832.64    379.94      396.68   248.06
+arena0_pattern1  lat    1711.32   1695.11    379.91      395.44   246.93
+arena0_pattern0  mem    1870.03   1873.81    379.97      398.36   262.04
+arena0_pattern0  lat    1696.99   1713.49     379.8      406.63   261.31
+Results: /home/sameer/Desktop/Edge_AI/Deployment-of-AI-ML-Models-on-Edge-Devices/segmentation/semantic/01_fcn/fcn8_resnet18/results/ort_mem_settings/run_20261021_151457

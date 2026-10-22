@@ -1,0 +1,96 @@
+{
+  "settings": {
+    "arena1_pattern1": {
+      "mem": {
+        "rss_by_stage_MiB": {
+          "python_start": 12.85,
+          "import_numpy_opencv": 54.43,
+          "import_onnxruntime": 73.72,
+          "import_helpers": 85.23,
+          "images_read": 122.66,
+          "session_created": 170.1,
+          "input_ready": 221.82,
+          "after_run_1": 546.08,
+          "after_run_2": 598.71,
+          "after_last_run": 598.92
+        },
+        "latency_run1_ms": 1927.7,
+        "latency_run2_ms": 1889.09,
+        "latency_steady_ms": 1874.74,
+        "peak_in_run1_MiB": 546.08,
+        "peak_in_steady_run_MiB": 598.87,
+        "rss_between_runs_MiB": 598.77
+      },
+      "lat": {
+        "rss_by_stage_MiB": {
+          "python_start": 12.86,
+          "import_numpy_opencv": 54.44,
+          "import_onnxruntime": 73.73,
+          "import_helpers": 85.23,
+          "images_read": 122.66,
+          "session_created": 170.09,
+          "input_ready": 221.77,
+          "after_run_1": 545.89,
+          "after_run_2": 598.4,
+          "after_last_run": 598.41
+        },
+        "latency_run1_ms": 1831.17,
+        "latency_run2_ms": 1790.59,
+        "latency_steady_ms": 1776.55,
+        "peak_in_run1_MiB": 545.89,
+        "peak_in_steady_run_MiB": 598.41,
+        "rss_between_runs_MiB": 598.4
+      }
+    }
+  },
+  "runs_per_process": 4,
+  "repeats": 2,
+  "threads": 4,
+  "sample_ms": 2.0,
+  "passes": [
+    "mem",
+    "lat"
+  ],
+  "conditions": [
+    {
+      "setting": "arena1_pattern1",
+      "pass": "mem",
+      "repeat": 1,
+      "start_temp_C": 45.75,
+      "load_avg_1m": 0.01,
+      "waited_s": 0.0,
+      "process_s": 8.5,
+      "end_temp_C": 52.9
+    },
+    {
+      "setting": "arena1_pattern1",
+      "pass": "lat",
+      "repeat": 1,
+      "start_temp_C": 52.35,
+      "load_avg_1m": 0.94,
+      "waited_s": 0.0,
+      "process_s": 8.1,
+      "end_temp_C": 54.55
+    },
+    {
+      "setting": "arena1_pattern1",
+      "pass": "mem",
+      "repeat": 2,
+      "start_temp_C": 54.55,
+      "load_avg_1m": 1.27,
+      "waited_s": 0.0,
+      "process_s": 8.5,
+      "end_temp_C": 54.55
+    },
+    {
+      "setting": "arena1_pattern1",
+      "pass": "lat",
+      "repeat": 2,
+      "start_temp_C": 54.55,
+      "load_avg_1m": 1.47,
+      "waited_s": 0.0,
+      "process_s": 8.1,
+      "end_temp_C": 55.1
+    }
+  ]
+}

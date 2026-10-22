@@ -1,0 +1,126 @@
+{
+  "settings": {
+    "arena1_pattern1": {
+      "rss_by_stage_MiB": {
+        "python_start": 12.8,
+        "import_numpy_opencv": 54.36,
+        "import_onnxruntime": 73.66,
+        "import_helpers": 85.14,
+        "images_read": 122.58,
+        "session_created": 170.02,
+        "input_ready": 221.75,
+        "after_run_1": 545.97,
+        "after_run_2": 598.61,
+        "after_last_run": 598.84
+      },
+      "latency_run1_ms": 1895.08,
+      "latency_run2_ms": 1876.97,
+      "latency_steady_ms": 1876.99,
+      "peak_in_run1_MiB": 545.97,
+      "peak_in_steady_run_MiB": 598.79,
+      "rss_between_runs_MiB": 598.68
+    },
+    "arena1_pattern0": {
+      "rss_by_stage_MiB": {
+        "python_start": 12.8,
+        "import_numpy_opencv": 54.36,
+        "import_onnxruntime": 73.66,
+        "import_helpers": 85.16,
+        "images_read": 122.59,
+        "session_created": 170.03,
+        "input_ready": 221.77,
+        "after_run_1": 546.0,
+        "after_run_2": 651.12,
+        "after_last_run": 651.36
+      },
+      "latency_run1_ms": 1944.12,
+      "latency_run2_ms": 1862.15,
+      "latency_steady_ms": 1877.96,
+      "peak_in_run1_MiB": 546.0,
+      "peak_in_steady_run_MiB": 651.3,
+      "rss_between_runs_MiB": 651.18
+    },
+    "arena0_pattern1": {
+      "rss_by_stage_MiB": {
+        "python_start": 12.8,
+        "import_numpy_opencv": 54.36,
+        "import_onnxruntime": 73.66,
+        "import_helpers": 85.16,
+        "images_read": 122.59,
+        "session_created": 169.91,
+        "input_ready": 221.64,
+        "after_run_1": 237.62,
+        "after_run_2": 245.27,
+        "after_last_run": 245.52
+      },
+      "latency_run1_ms": 1911.75,
+      "latency_run2_ms": 1886.51,
+      "latency_steady_ms": 1904.24,
+      "peak_in_run1_MiB": 379.88,
+      "peak_in_steady_run_MiB": 394.58,
+      "rss_between_runs_MiB": 245.33
+    },
+    "arena0_pattern0": {
+      "rss_by_stage_MiB": {
+        "python_start": 12.81,
+        "import_numpy_opencv": 54.38,
+        "import_onnxruntime": 73.66,
+        "import_helpers": 85.16,
+        "images_read": 122.59,
+        "session_created": 169.91,
+        "input_ready": 221.64,
+        "after_run_1": 237.62,
+        "after_run_2": 275.27,
+        "after_last_run": 275.52
+      },
+      "latency_run1_ms": 1894.98,
+      "latency_run2_ms": 1932.35,
+      "latency_steady_ms": 1893.07,
+      "peak_in_run1_MiB": 379.91,
+      "peak_in_steady_run_MiB": 405.74,
+      "rss_between_runs_MiB": 260.34
+    }
+  },
+  "runs_per_process": 4,
+  "repeats": 1,
+  "threads": 4,
+  "sample_ms": 2.0,
+  "conditions": [
+    {
+      "setting": "arena1_pattern1",
+      "repeat": 1,
+      "start_temp_C": 44.65,
+      "load_avg_1m": 0.22,
+      "waited_s": 0.0,
+      "process_s": 8.5,
+      "end_temp_C": 51.25
+    },
+    {
+      "setting": "arena1_pattern0",
+      "repeat": 1,
+      "start_temp_C": 51.8,
+      "load_avg_1m": 0.95,
+      "waited_s": 0.0,
+      "process_s": 8.5,
+      "end_temp_C": 52.9
+    },
+    {
+      "setting": "arena0_pattern1",
+      "repeat": 1,
+      "start_temp_C": 52.9,
+      "load_avg_1m": 1.42,
+      "waited_s": 0.0,
+      "process_s": 8.5,
+      "end_temp_C": 55.1
+    },
+    {
+      "setting": "arena0_pattern0",
+      "repeat": 1,
+      "start_temp_C": 49.6,
+      "load_avg_1m": 1.65,
+      "waited_s": 5.0,
+      "process_s": 8.5,
+      "end_temp_C": 55.1
+    }
+  ]
+}

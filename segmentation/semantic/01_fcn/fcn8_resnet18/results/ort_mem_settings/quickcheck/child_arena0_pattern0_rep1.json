@@ -1,0 +1,121 @@
+{
+ "setting": "arena0_pattern0",
+ "arena": false,
+ "pattern": false,
+ "repeat": 1,
+ "threads": 4,
+ "sample_ms": 2.0,
+ "page_bytes": 16384,
+ "onnxruntime": "1.30.0",
+ "n_samples": 3454,
+ "stages": [
+  {
+   "stage": "python_start",
+   "VmHWM_MiB": 12.81,
+   "VmRSS_MiB": 12.81,
+   "RssAnon_MiB": 6.83,
+   "RssFile_MiB": 5.98
+  },
+  {
+   "stage": "import_numpy_opencv",
+   "VmHWM_MiB": 54.38,
+   "VmRSS_MiB": 54.38,
+   "RssAnon_MiB": 21.44,
+   "RssFile_MiB": 32.94
+  },
+  {
+   "stage": "import_onnxruntime",
+   "VmHWM_MiB": 73.66,
+   "VmRSS_MiB": 73.66,
+   "RssAnon_MiB": 29.52,
+   "RssFile_MiB": 44.14
+  },
+  {
+   "stage": "import_helpers",
+   "VmHWM_MiB": 85.16,
+   "VmRSS_MiB": 85.16,
+   "RssAnon_MiB": 37.7,
+   "RssFile_MiB": 47.45
+  },
+  {
+   "stage": "images_read",
+   "VmHWM_MiB": 122.59,
+   "VmRSS_MiB": 122.59,
+   "RssAnon_MiB": 73.72,
+   "RssFile_MiB": 48.88
+  },
+  {
+   "stage": "session_created",
+   "VmHWM_MiB": 187.38,
+   "VmRSS_MiB": 169.91,
+   "RssAnon_MiB": 114.28,
+   "RssFile_MiB": 55.62
+  },
+  {
+   "stage": "input_ready",
+   "VmHWM_MiB": 221.64,
+   "VmRSS_MiB": 221.64,
+   "RssAnon_MiB": 165.2,
+   "RssFile_MiB": 56.44
+  },
+  {
+   "stage": "after_run_1",
+   "VmHWM_MiB": 379.91,
+   "VmRSS_MiB": 237.62,
+   "RssAnon_MiB": 180.5,
+   "RssFile_MiB": 57.12
+  },
+  {
+   "stage": "after_run_2",
+   "VmHWM_MiB": 417.38,
+   "VmRSS_MiB": 275.27,
+   "RssAnon_MiB": 218.14,
+   "RssFile_MiB": 57.12
+  },
+  {
+   "stage": "after_last_run",
+   "VmHWM_MiB": 417.09,
+   "VmRSS_MiB": 275.52,
+   "RssAnon_MiB": 218.39,
+   "RssFile_MiB": 57.12
+  }
+ ],
+ "runs": [
+  {
+   "run": 1,
+   "wall_ms": 1894.98,
+   "rss_before_MiB": 221.64,
+   "rss_after_MiB": 237.62,
+   "peak_in_run_MiB": 379.91,
+   "start_ms": 69.27,
+   "end_ms": 1964.25
+  },
+  {
+   "run": 2,
+   "wall_ms": 1932.35,
+   "rss_before_MiB": 245.12,
+   "rss_after_MiB": 275.27,
+   "peak_in_run_MiB": 417.38,
+   "start_ms": 2030.81,
+   "end_ms": 3963.16
+  },
+  {
+   "run": 3,
+   "wall_ms": 1886.81,
+   "rss_before_MiB": 275.27,
+   "rss_after_MiB": 223.03,
+   "peak_in_run_MiB": 394.38,
+   "start_ms": 4030.3,
+   "end_ms": 5917.11
+  },
+  {
+   "run": 4,
+   "wall_ms": 1899.32,
+   "rss_before_MiB": 245.41,
+   "rss_after_MiB": 275.52,
+   "peak_in_run_MiB": 417.09,
+   "start_ms": 5984.7,
+   "end_ms": 7884.02
+  }
+ ]
+}
