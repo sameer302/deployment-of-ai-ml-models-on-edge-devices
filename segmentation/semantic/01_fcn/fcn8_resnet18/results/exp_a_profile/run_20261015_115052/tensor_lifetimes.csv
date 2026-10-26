@@ -1,0 +1,32 @@
+tensor,written_by,writer_op,last_read_by,MiB,kind
+test_input,input,,0,22.5,model input
+143,0,FusedConv,1,120.0,next layer only
+144,1,MaxPool,3,30.0,kept for later
+147,2,FusedConv,3,30.0,next layer only
+151,3,FusedConv,5,30.0,kept for later
+154,4,FusedConv,5,30.0,next layer only
+158,5,FusedConv,7,30.0,kept for later
+161,6,FusedConv,8,15.0,kept for later
+164,7,Conv,8,15.0,next layer only
+167,8,FusedConv,10,15.0,kept for later
+170,9,FusedConv,10,15.0,next layer only
+174,10,FusedConv,27,15.0,kept for later
+177,11,FusedConv,13,7.5,kept for later
+180,12,Conv,13,7.5,next layer only
+183,13,FusedConv,15,7.5,kept for later
+186,14,FusedConv,15,7.5,next layer only
+190,15,FusedConv,24,7.5,kept for later
+193,16,FusedConv,18,3.75,kept for later
+196,17,Conv,18,3.75,next layer only
+199,18,FusedConv,20,3.75,kept for later
+202,19,FusedConv,20,3.75,next layer only
+206,20,FusedConv,21,3.75,next layer only
+207,21,Conv,22,0.139,next layer only
+208,22,ConvTranspose,23,0.557,next layer only
+209,23,BatchNormalization,24,0.557,next layer only
+211,24,FusedConv,25,0.557,next layer only
+212,25,ConvTranspose,26,2.227,next layer only
+213,26,BatchNormalization,27,2.227,next layer only
+215,27,FusedConv,28,2.227,next layer only
+226,28,Resize,29,142.5,next layer only
+output,29,ArgMax,29,15.0,model output

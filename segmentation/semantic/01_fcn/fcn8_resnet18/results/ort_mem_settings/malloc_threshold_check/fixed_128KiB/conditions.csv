@@ -1,0 +1,3 @@
+setting,pass,repeat,start_temp_C,load_avg_1m,waited_s,process_s,end_temp_C
+arena0_pattern1,mem,1,49.05,1.6,0.0,12.9,51.8
+arena0_pattern0,mem,1,50.15,2.36,0.0,12.9,52.35

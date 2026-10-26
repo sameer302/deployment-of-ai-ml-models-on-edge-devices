@@ -1,0 +1,186 @@
+{
+ "page_bytes": 16384,
+ "replay": [
+  {
+   "run": 1,
+   "new_regions": [
+    {
+     "run": 1,
+     "layer_id": 0,
+     "tensor_MiB": 120.0,
+     "requested_MiB": 120.0,
+     "region_MiB": 128.0
+    },
+    {
+     "run": 1,
+     "layer_id": 1,
+     "tensor_MiB": 30.0,
+     "requested_MiB": 30.0,
+     "region_MiB": 128.0
+    },
+    {
+     "run": 1,
+     "layer_id": 28,
+     "tensor_MiB": 142.5,
+     "requested_MiB": 142.5,
+     "region_MiB": 256.0
+    }
+   ],
+   "reserved_MiB": 513.0,
+   "newly_written_MiB": 383.2,
+   "written_total_MiB": 383.2
+  },
+  {
+   "run": 2,
+   "new_regions": [],
+   "reserved_MiB": 513.0,
+   "newly_written_MiB": 0.0,
+   "written_total_MiB": 383.2
+  }
+ ],
+ "measured": {
+  "file": "results/arena_log_check/run_20261026_122559/segments.csv",
+  "segments": [
+   {
+    "setting": "arena1_pattern1",
+    "segment": "session",
+    "n_extensions": "1",
+    "requested_MiB": "0.02",
+    "taken_from_os_MiB": "1.0",
+    "regions_MiB": "1",
+    "reserved_MiB": "0.0",
+    "arena_total_end_MiB": "1.001",
+    "rss_before_MiB": "91.44",
+    "rss_after_MiB": "209.86",
+    "rss_change_MiB": "118.42",
+    "peak_rss_MiB": ""
+   },
+   {
+    "setting": "arena1_pattern1",
+    "segment": "run1",
+    "n_extensions": "3",
+    "requested_MiB": "292.5",
+    "taken_from_os_MiB": "512.0",
+    "regions_MiB": "128 128 256",
+    "reserved_MiB": "0",
+    "arena_total_end_MiB": "513.001",
+    "rss_before_MiB": "209.86",
+    "rss_after_MiB": "533.28",
+    "rss_change_MiB": "323.42",
+    "peak_rss_MiB": "533.28"
+   },
+   {
+    "setting": "arena1_pattern1",
+    "segment": "run2",
+    "n_extensions": "0",
+    "requested_MiB": "0",
+    "taken_from_os_MiB": "0",
+    "regions_MiB": "",
+    "reserved_MiB": "0",
+    "arena_total_end_MiB": "",
+    "rss_before_MiB": "533.28",
+    "rss_after_MiB": "540.78",
+    "rss_change_MiB": "7.5",
+    "peak_rss_MiB": "540.78"
+   },
+   {
+    "setting": "arena1_pattern1",
+    "segment": "run3",
+    "n_extensions": "0",
+    "requested_MiB": "0",
+    "taken_from_os_MiB": "0",
+    "regions_MiB": "",
+    "reserved_MiB": "0",
+    "arena_total_end_MiB": "",
+    "rss_before_MiB": "540.78",
+    "rss_after_MiB": "540.78",
+    "rss_change_MiB": "0.0",
+    "peak_rss_MiB": "540.78"
+   },
+   {
+    "setting": "arena1_pattern1",
+    "segment": "run4",
+    "n_extensions": "0",
+    "requested_MiB": "0",
+    "taken_from_os_MiB": "0",
+    "regions_MiB": "",
+    "reserved_MiB": "0",
+    "arena_total_end_MiB": "",
+    "rss_before_MiB": "540.78",
+    "rss_after_MiB": "540.78",
+    "rss_change_MiB": "0.0",
+    "peak_rss_MiB": "540.78"
+   },
+   {
+    "setting": "arena1_pattern0",
+    "segment": "session",
+    "n_extensions": "1",
+    "requested_MiB": "0.02",
+    "taken_from_os_MiB": "1.0",
+    "regions_MiB": "1",
+    "reserved_MiB": "0.0",
+    "arena_total_end_MiB": "1.001",
+    "rss_before_MiB": "91.52",
+    "rss_after_MiB": "209.94",
+    "rss_change_MiB": "118.42",
+    "peak_rss_MiB": ""
+   },
+   {
+    "setting": "arena1_pattern0",
+    "segment": "run1",
+    "n_extensions": "3",
+    "requested_MiB": "292.5",
+    "taken_from_os_MiB": "512.0",
+    "regions_MiB": "128 128 256",
+    "reserved_MiB": "0",
+    "arena_total_end_MiB": "513.001",
+    "rss_before_MiB": "209.94",
+    "rss_after_MiB": "533.36",
+    "rss_change_MiB": "323.42",
+    "peak_rss_MiB": "533.36"
+   },
+   {
+    "setting": "arena1_pattern0",
+    "segment": "run2",
+    "n_extensions": "0",
+    "requested_MiB": "0",
+    "taken_from_os_MiB": "0",
+    "regions_MiB": "",
+    "reserved_MiB": "0",
+    "arena_total_end_MiB": "",
+    "rss_before_MiB": "533.36",
+    "rss_after_MiB": "593.36",
+    "rss_change_MiB": "60.0",
+    "peak_rss_MiB": "593.36"
+   },
+   {
+    "setting": "arena1_pattern0",
+    "segment": "run3",
+    "n_extensions": "0",
+    "requested_MiB": "0",
+    "taken_from_os_MiB": "0",
+    "regions_MiB": "",
+    "reserved_MiB": "0",
+    "arena_total_end_MiB": "",
+    "rss_before_MiB": "593.36",
+    "rss_after_MiB": "593.36",
+    "rss_change_MiB": "0.0",
+    "peak_rss_MiB": "593.36"
+   },
+   {
+    "setting": "arena1_pattern0",
+    "segment": "run4",
+    "n_extensions": "0",
+    "requested_MiB": "0",
+    "taken_from_os_MiB": "0",
+    "regions_MiB": "",
+    "reserved_MiB": "0",
+    "arena_total_end_MiB": "",
+    "rss_before_MiB": "593.36",
+    "rss_after_MiB": "593.36",
+    "rss_change_MiB": "0.0",
+    "peak_rss_MiB": "593.36"
+   }
+  ]
+ }
+}

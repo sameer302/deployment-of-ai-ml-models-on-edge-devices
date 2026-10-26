@@ -1,0 +1,11 @@
+setting,segment,n_extensions,requested_MiB,taken_from_os_MiB,regions_MiB,reserved_MiB,arena_total_end_MiB,rss_before_MiB,rss_after_MiB,rss_change_MiB,peak_rss_MiB
+arena1_pattern1,session,1,0.02,1.0,1,0.0,1.001,91.44,209.86,118.42,
+arena1_pattern1,run1,3,292.5,512.0,128 128 256,0,513.001,209.86,533.28,323.42,533.28
+arena1_pattern1,run2,0,0,0,,0,,533.28,540.78,7.5,540.78
+arena1_pattern1,run3,0,0,0,,0,,540.78,540.78,0.0,540.78
+arena1_pattern1,run4,0,0,0,,0,,540.78,540.78,0.0,540.78
+arena1_pattern0,session,1,0.02,1.0,1,0.0,1.001,91.52,209.94,118.42,
+arena1_pattern0,run1,3,292.5,512.0,128 128 256,0,513.001,209.94,533.36,323.42,533.36
+arena1_pattern0,run2,0,0,0,,0,,533.36,593.36,60.0,593.36
+arena1_pattern0,run3,0,0,0,,0,,593.36,593.36,0.0,593.36
+arena1_pattern0,run4,0,0,0,,0,,593.36,593.36,0.0,593.36

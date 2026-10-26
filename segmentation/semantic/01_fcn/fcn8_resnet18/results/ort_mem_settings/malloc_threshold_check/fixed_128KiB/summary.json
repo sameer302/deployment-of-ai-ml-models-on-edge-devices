@@ -1,0 +1,77 @@
+{
+  "settings": {
+    "arena0_pattern1": {
+      "mem": {
+        "rss_by_stage_MiB": {
+          "python_start": 12.84,
+          "import_numpy_opencv": 53.81,
+          "import_onnxruntime": 73.11,
+          "import_helpers": 84.58,
+          "images_read": 116.06,
+          "session_created": 167.81,
+          "input_ready": 191.56,
+          "after_run_1": 192.58,
+          "after_run_2": 192.7,
+          "after_last_run": 195.3
+        },
+        "latency_run1_ms": 1942.28,
+        "latency_run2_ms": 1895.18,
+        "latency_steady_ms": 1921.47,
+        "peak_in_run1_MiB": 348.75,
+        "peak_in_steady_run_MiB": 357.33,
+        "rss_between_runs_MiB": 192.88
+      }
+    },
+    "arena0_pattern0": {
+      "mem": {
+        "rss_by_stage_MiB": {
+          "python_start": 12.83,
+          "import_numpy_opencv": 53.8,
+          "import_onnxruntime": 73.09,
+          "import_helpers": 84.56,
+          "images_read": 116.05,
+          "session_created": 167.8,
+          "input_ready": 191.55,
+          "after_run_1": 192.56,
+          "after_run_2": 192.69,
+          "after_last_run": 195.3
+        },
+        "latency_run1_ms": 1935.76,
+        "latency_run2_ms": 1928.02,
+        "latency_steady_ms": 1967.71,
+        "peak_in_run1_MiB": 349.06,
+        "peak_in_steady_run_MiB": 350.12,
+        "rss_between_runs_MiB": 192.88
+      }
+    }
+  },
+  "runs_per_process": 6,
+  "repeats": 1,
+  "threads": 4,
+  "sample_ms": 2.0,
+  "passes": [
+    "mem"
+  ],
+  "conditions": [
+    {
+      "setting": "arena0_pattern1",
+      "pass": "mem",
+      "repeat": 1,
+      "start_temp_C": 49.05,
+      "load_avg_1m": 1.6,
+      "waited_s": 0.0,
+      "process_s": 12.9,
+      "end_temp_C": 51.8
+    },
+    {
+      "setting": "arena0_pattern0",
+      "pass": "mem",
+      "repeat": 1,
+      "start_temp_C": 50.15,
+      "load_avg_1m": 2.36,
+      "waited_s": 0.0,
+      "process_s": 12.9,
+      "end_temp_C": 52.35
+    }
+  ]
+}

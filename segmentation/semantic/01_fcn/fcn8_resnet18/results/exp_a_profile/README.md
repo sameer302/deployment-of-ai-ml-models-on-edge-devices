@@ -14,6 +14,8 @@ Produced by `../../profile_layers.py`. One folder per run: `run_<YYYYMMDD_HHMMSS
 | `layer_stats.csv`, `block_stats.csv`, `layer_stats.json` | Per fused layer / block: FLOPs, weight and activation sizes, live memory (`../../layer_stats.py`) | Yes |
 | `analysis_layers.csv`, `analysis_blocks.csv`, `analysis.json` | Roofline and time breakdown (`../../analyze_profile.py`) | Yes |
 | `plots/roofline.png`, `plots/time_vs_compute.png`, `plots/time_gap.png` | Charts from `../../analyze_profile.py` | Yes |
+| `tensor_lifetimes.csv`, `arena_replay.json` | Per activation tensor: writer, last reader, size, kind; replay of the run-1/run-2 allocations through a model of ORT's arena, compared with `../arena_log_check/` (`../../tensor_lifetimes.py`) | Yes |
+| `plots/tensor_lifetimes.png` | One bar per activation tensor from writer to last reader; outlined bars made the arena take a new region (`../../tensor_lifetimes.py`) | Yes |
 | `plots/fusion_map.png` | The 57 ONNX layers grouped into the 30 fused layers, one column per block (`../../plot_fusion_map.py`) | Yes |
 | `plots/layer_latency.png` | Median time per fused layer, coloured by roofline bound, with the best possible time (`../../plot_layer_latency.py`) | Yes |
 | `plots/layer_latency_plain.png` | Median time per fused layer only, one colour (`../../plot_layer_latency.py --plain`) | Yes |

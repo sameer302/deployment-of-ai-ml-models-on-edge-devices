@@ -1,0 +1,134 @@
+@@MARK start rss=91.52 hwm=96.97
+2026-10-26 12:26:27.304232054 [I:onnxruntime:, inference_session.cc:764 TraceSessionOptions] Session Options {  execution_mode:0 execution_order:DEFAULT enable_profiling:0 optimized_model_filepath:"" enable_mem_pattern:0 enable_mem_reuse:1 enable_cpu_mem_arena:1 profile_file_prefix:onnxruntime_profile_ session_logid: session_log_severity_level:-1 session_log_verbosity_level:0 max_num_graph_transformation_steps:10 graph_optimization_level:4 intra_op_param:OrtThreadPoolParams { thread_pool_size: 4 auto_set_affinity: 0 allow_spinning: 1 spin_duration_us: -1 spin_backoff_max: 1 dynamic_block_base_: 0 stack_size: 0 affinity_str:  set_denormal_as_zero: 0 } inter_op_param:OrtThreadPoolParams { thread_pool_size: 1 auto_set_affinity: 0 allow_spinning: 1 spin_duration_us: -1 spin_backoff_max: 1 dynamic_block_base_: 0 stack_size: 0 affinity_str:  set_denormal_as_zero: 0 } use_per_session_threads:1 thread_pool_allow_spinning:1 use_deterministic_compute:0 ep_selection_policy:0 config_options: {  } }
+2026-10-26 12:26:27.304262813 [I:onnxruntime:, inference_session.cc:526 operator()] Flush-to-zero and denormal-as-zero are off
+2026-10-26 12:26:27.304270202 [I:onnxruntime:, inference_session.cc:534 ConstructorCommon] Creating and using per session threadpools since use_per_session_threads_ is true
+2026-10-26 12:26:27.304282035 [I:onnxruntime:, inference_session.cc:579 ConstructorCommon] Dynamic block base set to 0
+2026-10-26 12:26:27.327086212 [I:onnxruntime:, inference_session.cc:2610 Initialize] Initializing session.
+2026-10-26 12:26:27.327167063 [I:onnxruntime:Default, bfc_arena.cc:28 BFCArena] Creating BFCArena for Cpu with following configs: initial_chunk_size_bytes: 1048576 max_dead_bytes_per_chunk: 134217728 initial_growth_chunk_size_bytes: 2097152 max_power_of_two_extend_bytes: 1073741824 memory limit: 18446744073709551615 arena_extend_strategy: 0
+2026-10-26 12:26:27.329791385 [I:onnxruntime:, graph_partitioner.cc:1413 InlineFunctionsAOT] This model does not have any local functions defined. AOT Inlining is not performed
+2026-10-26 12:26:27.341694980 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer EnsureUniqueDQForNodeUnit modified: 0 with status: OK
+2026-10-26 12:26:27.341766721 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer Level1_RuleBasedTransformer modified: 0 with status: OK
+2026-10-26 12:26:27.341784721 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer DoubleQDQPairsRemover modified: 0 with status: OK
+2026-10-26 12:26:27.341844313 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer ConstantSharing modified: 0 with status: OK
+2026-10-26 12:26:27.341968072 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer CommonSubexpressionElimination modified: 0 with status: OK
+2026-10-26 12:26:27.341993868 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer ConstantFolding modified: 0 with status: OK
+2026-10-26 12:26:27.342011683 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MatMulAddFusion modified: 0 with status: OK
+2026-10-26 12:26:27.342027479 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer ReshapeFusion modified: 0 with status: OK
+2026-10-26 12:26:27.342033757 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer FreeDimensionOverrideTransformer modified: 0 with status: OK
+2026-10-26 12:26:27.342049608 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer SliceConcatToSpaceToDepthFusion modified: 0 with status: OK
+2026-10-26 12:26:27.342055553 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer GeluFusionL1 modified: 0 with status: OK
+2026-10-26 12:26:27.342060034 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer LayerNormFusionL1 modified: 0 with status: OK
+2026-10-26 12:26:27.342076182 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer QDQPropagationTransformer modified: 0 with status: OK
+2026-10-26 12:26:27.342100053 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer WeightBiasQuantization modified: 0 with status: OK
+2026-10-26 12:26:27.342120423 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer EnsureUniqueDQForNodeUnit modified: 0 with status: OK
+2026-10-26 12:26:27.342135200 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer WhereDummyDq modified: 0 with status: OK
+2026-10-26 12:26:27.342200274 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer TransposeOptimizer modified: 0 with status: OK
+2026-10-26 12:26:27.342439773 [I:onnxruntime:, inference_session.cc:1922 TransformGraph] Running graph optimizations in loop 1 time/s (Graph Optimizations Loop Level : 1)
+2026-10-26 12:26:27.342466588 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer Level2_RuleBasedTransformer modified: 0 with status: OK
+2026-10-26 12:26:27.342518847 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer TransposeOptimizer_CPUExecutionProvider modified: 0 with status: OK
+2026-10-26 12:26:27.342562384 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer QDQSelectorActionTransformer modified: 0 with status: OK
+2026-10-26 12:26:27.342578513 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer GemmActivationFusion modified: 0 with status: OK
+2026-10-26 12:26:27.342594661 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MatMulIntegerToFloatFusion modified: 0 with status: OK
+2026-10-26 12:26:27.342610143 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer DynamicQuantizeMatMulFusion modified: 0 with status: OK
+2026-10-26 12:26:27.342710568 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer ConvActivationFusion modified: 1 with status: OK
+2026-10-26 12:26:27.343240325 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer GeluFusionL2 modified: 0 with status: OK
+2026-10-26 12:26:27.343262233 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer LayerNormFusionL2 modified: 0 with status: OK
+2026-10-26 12:26:27.343277010 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer SimplifiedLayerNormFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343290362 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer AttentionFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343303251 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer EmbedLayerNormFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343332047 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer GatherSliceToSplitFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343346510 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer GatherToSliceFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343361028 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MatmulTransposeFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343377362 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer BiasGeluFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343391084 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer GroupQueryAttentionFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343404250 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MatMulAddFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343417528 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer SkipLayerNormFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343430417 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer BiasSkipLayerNormFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343444009 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer FastGeluFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343458176 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer QuickGeluFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343472361 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer BiasSoftmaxFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343485954 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer BiasDropoutFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343502620 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MatMulScaleFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343519917 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MatMulActivationFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343539528 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MatMulNBitsFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343553194 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer GroupQueryAttentionPreNormFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343568083 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer QDQFinalCleanupTransformer modified: 0 with status: OK
+2026-10-26 12:26:27.343584731 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer Level2_RuleBasedTransformer modified: 0 with status: OK
+2026-10-26 12:26:27.343639268 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer QDQSelectorActionTransformer modified: 0 with status: OK
+2026-10-26 12:26:27.343663379 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer GemmActivationFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343677120 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MatMulIntegerToFloatFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343690157 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer DynamicQuantizeMatMulFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343711990 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer ConvActivationFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343725749 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer GeluFusionL2 modified: 0 with status: OK
+2026-10-26 12:26:27.343738897 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer LayerNormFusionL2 modified: 0 with status: OK
+2026-10-26 12:26:27.343751416 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer SimplifiedLayerNormFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343763841 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer AttentionFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343776989 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer EmbedLayerNormFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343801749 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer GatherSliceToSplitFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343815008 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer GatherToSliceFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343828211 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MatmulTransposeFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343842285 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer BiasGeluFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343855897 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer GroupQueryAttentionFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343869008 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MatMulAddFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343881656 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer SkipLayerNormFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343894248 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer BiasSkipLayerNormFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343907082 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer FastGeluFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343919841 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer QuickGeluFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343932804 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer BiasSoftmaxFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343945544 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer BiasDropoutFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343960100 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MatMulScaleFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343974915 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MatMulActivationFusion modified: 0 with status: OK
+2026-10-26 12:26:27.343992637 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MatMulNBitsFusion modified: 0 with status: OK
+2026-10-26 12:26:27.344005433 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer GroupQueryAttentionPreNormFusion modified: 0 with status: OK
+2026-10-26 12:26:27.344019285 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer QDQFinalCleanupTransformer modified: 0 with status: OK
+2026-10-26 12:26:27.344062025 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer NhwcTransformer modified: 0 with status: OK
+2026-10-26 12:26:27.344168414 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer ConvAddActivationFusion modified: 1 with status: OK
+2026-10-26 12:26:27.344576282 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer NhwcTransformer modified: 0 with status: OK
+2026-10-26 12:26:27.344598634 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer ConvAddActivationFusion modified: 0 with status: OK
+2026-10-26 12:26:27.344674856 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer RemoveDuplicateCastTransformer modified: 0 with status: OK
+2026-10-26 12:26:27.344680985 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer CastFloat16Transformer modified: 0 with status: OK
+2026-10-26 12:26:27.344691930 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer FuseFp16InitializerToFp32NodeTransformer modified: 0 with status: OK
+2026-10-26 12:26:27.344698448 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MemcpyTransformer modified: 0 with status: OK
+2026-10-26 12:26:27.344849966 [I:onnxruntime:, allocation_planner.cc:2653 CreateGraphPartitioner] Use DeviceBasedPartition as default
+2026-10-26 12:26:27.345089058 [I:onnxruntime:, session_state_utils.cc:263 SaveInitializedTensors] Saving initialized tensors.
+2026-10-26 12:26:27.345108447 [I:onnxruntime:Default, bfc_arena.cc:281 Reserve] Reserving memory in BFCArena for Cpu size: 76
+2026-10-26 12:26:27.345128002 [I:onnxruntime:Default, bfc_arena.cc:281 Reserve] Reserving memory in BFCArena for Cpu size: 76
+2026-10-26 12:26:27.345144557 [I:onnxruntime:Default, bfc_arena.cc:281 Reserve] Reserving memory in BFCArena for Cpu size: 76
+2026-10-26 12:26:27.345168057 [I:onnxruntime:Default, bfc_arena.cc:281 Reserve] Reserving memory in BFCArena for Cpu size: 32
+2026-10-26 12:26:27.345180354 [I:onnxruntime:Default, bfc_arena.cc:281 Reserve] Reserving memory in BFCArena for Cpu size: 76
+2026-10-26 12:26:27.345195168 [I:onnxruntime:Default, bfc_arena.cc:281 Reserve] Reserving memory in BFCArena for Cpu size: 76
+2026-10-26 12:26:27.345206187 [I:onnxruntime:Default, bfc_arena.cc:281 Reserve] Reserving memory in BFCArena for Cpu size: 76
+2026-10-26 12:26:27.345215594 [I:onnxruntime:Default, bfc_arena.cc:281 Reserve] Reserving memory in BFCArena for Cpu size: 76
+2026-10-26 12:26:27.345227335 [I:onnxruntime:Default, bfc_arena.cc:281 Reserve] Reserving memory in BFCArena for Cpu size: 76
+2026-10-26 12:26:27.345268798 [I:onnxruntime:Default, bfc_arena.cc:281 Reserve] Reserving memory in BFCArena for Cpu size: 76
+2026-10-26 12:26:27.345284890 [I:onnxruntime:Default, bfc_arena.cc:281 Reserve] Reserving memory in BFCArena for Cpu size: 76
+2026-10-26 12:26:27.345296390 [I:onnxruntime:Default, bfc_arena.cc:281 Reserve] Reserving memory in BFCArena for Cpu size: 76
+2026-10-26 12:26:27.345320186 [I:onnxruntime:Default, bfc_arena.cc:281 Reserve] Reserving memory in BFCArena for Cpu size: 76
+2026-10-26 12:26:27.345336612 [I:onnxruntime:Default, bfc_arena.cc:281 Reserve] Reserving memory in BFCArena for Cpu size: 76
+2026-10-26 12:26:27.345348538 [I:onnxruntime:, session_state_utils.cc:463 SaveInitializedTensors] Done saving initialized tensors
+2026-10-26 12:26:27.345432927 [I:onnxruntime:Default, bfc_arena.cc:335 AllocateRawInternal] Extending BFCArena for Cpu. bin_num:6 (requested) num_bytes: 23104 (actual) rounded_bytes:23296
+2026-10-26 12:26:27.345451778 [I:onnxruntime:Default, bfc_arena.cc:205 Extend] Extended allocation by 1048576 bytes.
+2026-10-26 12:26:27.345456649 [I:onnxruntime:Default, bfc_arena.cc:208 Extend] Total allocated bytes: 1049596
+2026-10-26 12:26:27.345461019 [I:onnxruntime:Default, bfc_arena.cc:211 Extend] Allocated memory at 0x31214800 to 0x31314800
+2026-10-26 12:26:27.345700185 [I:onnxruntime:, inference_session.cc:3094 Initialize] Session successfully initialized.
+@@MARK session_and_input_ready rss=209.94 hwm=209.94
+@@MARK run1_start rss=209.94 hwm=209.94
+2026-10-26 12:26:27.415460115 [I:onnxruntime:Default, bfc_arena.cc:335 AllocateRawInternal] Extending BFCArena for Cpu. bin_num:18 (requested) num_bytes: 125829120 (actual) rounded_bytes:125829120
+2026-10-26 12:26:27.415508022 [I:onnxruntime:Default, bfc_arena.cc:205 Extend] Extended allocation by 134217728 bytes.
+2026-10-26 12:26:27.415515078 [I:onnxruntime:Default, bfc_arena.cc:208 Extend] Total allocated bytes: 135267324
+2026-10-26 12:26:27.415519430 [I:onnxruntime:Default, bfc_arena.cc:211 Extend] Allocated memory at 0x7fff4fffc040 to 0x7fff57ffc040
+2026-10-26 12:26:27.588911066 [I:onnxruntime:Default, bfc_arena.cc:335 AllocateRawInternal] Extending BFCArena for Cpu. bin_num:16 (requested) num_bytes: 31457280 (actual) rounded_bytes:31457280
+2026-10-26 12:26:27.589001140 [I:onnxruntime:Default, bfc_arena.cc:205 Extend] Extended allocation by 134217728 bytes.
+2026-10-26 12:26:27.589007881 [I:onnxruntime:Default, bfc_arena.cc:208 Extend] Total allocated bytes: 269485052
+2026-10-26 12:26:27.589011992 [I:onnxruntime:Default, bfc_arena.cc:211 Extend] Allocated memory at 0x7fff47ff8040 to 0x7fff4fff8040
+2026-10-26 12:26:29.057044026 [I:onnxruntime:Default, bfc_arena.cc:335 AllocateRawInternal] Extending BFCArena for Cpu. bin_num:19 (requested) num_bytes: 149422080 (actual) rounded_bytes:149422080
+2026-10-26 12:26:29.057127545 [I:onnxruntime:Default, bfc_arena.cc:205 Extend] Extended allocation by 268435456 bytes.
+2026-10-26 12:26:29.057133619 [I:onnxruntime:Default, bfc_arena.cc:208 Extend] Total allocated bytes: 537920508
+2026-10-26 12:26:29.057137933 [I:onnxruntime:Default, bfc_arena.cc:211 Extend] Allocated memory at 0x7fff37ff4040 to 0x7fff47ff4040
+@@MARK run1_end rss=533.36 hwm=533.36
+@@MARK run2_start rss=533.36 hwm=533.36
+@@MARK run2_end rss=593.36 hwm=593.36
+@@MARK run3_start rss=593.36 hwm=593.36
+@@MARK run3_end rss=593.36 hwm=593.36
+@@MARK run4_start rss=593.36 hwm=593.36
+@@MARK run4_end rss=593.36 hwm=593.36
