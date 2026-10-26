@@ -5,6 +5,13 @@ Weight files are not committed to git (see `segmentation/.gitignore`). This file
 | File | Format | Precision | Source | Size | SHA-256 |
 |---|---|---|---|---|---|
 | `fcn8_resnet_v1_18.onnx` | ONNX (opset 13, IR 6, exported from PyTorch 1.10) | FP32 | Hailo Model Explorer | 44,811,225 bytes | `ae082c74309cb074ca15c76c4063e8c5a9427dee853ccfadcea6277766e2ff65` |
+| `fcn8_resnet_v1_18_mmseg.pth` | PyTorch checkpoint for Hailo's mmsegmentation fork (`{"state_dict", "meta"}`) | FP32 | made from the ONNX file by `../onnx_to_pytorch.py` | 44,905,991 bytes | `75cc947df861d957afff031848baeec4d5639f6c21caad30b8f0c662272e6675` (26 Oct 2026; changes on every rerun, because `meta` holds the creation time) |
+
+The `.pth` is made, not downloaded: run `onnx_to_pytorch.py` (in `venv_torch`) to restore it. It loads into
+github.com/hailo-ai/mmsegmentation (branch `Hailo-0.1` or later) with `configs/fcn/fcn8_r18_hailo.py`. The ONNX
+export folded the encoder's BatchNorm into the convs, so each encoder BatchNorm in the checkpoint is weight 1,
+bias = folded conv bias, mean 0, var 1 − eps: same output as the ONNX file, original BatchNorm statistics lost.
+See `../results/onnx_to_pytorch/README.md`.
 
 ## Source
 - **Hailo Model Explorer (Vision):** https://hailo.ai/products/hailo-software/model-explorer-vision/

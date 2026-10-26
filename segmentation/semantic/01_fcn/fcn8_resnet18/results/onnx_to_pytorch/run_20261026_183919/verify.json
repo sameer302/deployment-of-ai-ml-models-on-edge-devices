@@ -1,0 +1,64 @@
+{
+  "model": "/home/sameer/Desktop/Edge_AI/Deployment-of-AI-ML-Models-on-Edge-Devices/segmentation/semantic/01_fcn/fcn8_resnet18/models/fcn8_resnet_v1_18.onnx",
+  "checkpoint": "/home/sameer/Desktop/Edge_AI/Deployment-of-AI-ML-Models-on-Edge-Devices/segmentation/semantic/01_fcn/fcn8_resnet18/models/fcn8_resnet_v1_18_mmseg.pth",
+  "results": [
+    {
+      "input": "random",
+      "head_max_abs_diff": 1.0609626770019531e-05,
+      "head_max_abs_value": 12.248193740844727,
+      "logits_max_abs_diff": 6.198883056640625e-05,
+      "class_map_agreement": 0.9999989827473958,
+      "pixels_different": 2
+    },
+    {
+      "input": "frankfurt_000000_000294_leftImg8bit.png",
+      "head_max_abs_diff": 6.29425048828125e-05,
+      "head_max_abs_value": 17.84134864807129,
+      "logits_max_abs_diff": 0.00011920928955078125,
+      "class_map_agreement": 1.0,
+      "pixels_different": 0
+    },
+    {
+      "input": "frankfurt_000000_000576_leftImg8bit.png",
+      "head_max_abs_diff": 8.0108642578125e-05,
+      "head_max_abs_value": 20.156131744384766,
+      "logits_max_abs_diff": 0.0001239776611328125,
+      "class_map_agreement": 0.9999989827473958,
+      "pixels_different": 2
+    },
+    {
+      "input": "frankfurt_000000_001016_leftImg8bit.png",
+      "head_max_abs_diff": 8.392333984375e-05,
+      "head_max_abs_value": 21.215190887451172,
+      "logits_max_abs_diff": 0.0001468658447265625,
+      "class_map_agreement": 1.0,
+      "pixels_different": 0
+    },
+    {
+      "input": "frankfurt_000000_001236_leftImg8bit.png",
+      "head_max_abs_diff": 4.887580871582031e-05,
+      "head_max_abs_value": 16.647418975830078,
+      "logits_max_abs_diff": 0.00011801719665527344,
+      "class_map_agreement": 1.0,
+      "pixels_different": 0
+    },
+    {
+      "input": "frankfurt_000000_001751_leftImg8bit.png",
+      "head_max_abs_diff": 4.673004150390625e-05,
+      "head_max_abs_value": 18.947465896606445,
+      "logits_max_abs_diff": 0.00011682510375976562,
+      "class_map_agreement": 1.0,
+      "pixels_different": 0
+    }
+  ],
+  "versions": {
+    "python": "3.13.5",
+    "torch": "2.14.1+cpu",
+    "torchvision": "0.29.1+cpu",
+    "onnx": "1.23.2",
+    "onnxruntime": "1.30.0",
+    "numpy": "2.5.3"
+  },
+  "threads": 4,
+  "timestamp": "2026-10-26T18:39:50.611354"
+}
